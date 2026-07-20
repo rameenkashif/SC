@@ -1,0 +1,6 @@
+{
+  "name": "Swim Arena",
+  "description": "A single-page scrolling website for Swim Arena featuring smooth animations, glass-morphism layouts, trainer carousels, and a sleek dark-themed design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
