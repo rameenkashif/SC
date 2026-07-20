@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Globe, Menu, X, SwatchBook, Award } from "lucide-react";
+import { Logo } from "./Logo";
 
 interface HeaderProps {
   isVisible: boolean; // True when the deep blue wave covers the screen (scrollProgress >= 0.9)
@@ -39,11 +40,9 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
           className="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 glass-panel-light backdrop-blur-xl border-b border-white/10 text-white select-none shadow-[0_4px_30px_rgba(0,0,0,0.2)]"
         >
           {/* Logo Mark */}
-          <a href="#home" onClick={(e) => handleScrollTo(e, "#home")} className="flex items-center gap-2 group">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-teal-400 bg-teal-950/40 text-teal-300 font-serif text-lg font-bold">
-              S<span className="text-[9px] text-white absolute bottom-1 right-2">C</span>
-            </div>
-            <div className="flex flex-col">
+          <a href="#home" onClick={(e) => handleScrollTo(e, "#home")} className="flex items-center gap-3 group">
+            <Logo className="h-9 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)] group-hover:opacity-90 transition-opacity" />
+            <div className="hidden sm:flex flex-col border-l border-white/15 pl-3">
               <span className="text-sm font-black tracking-wider leading-none text-white group-hover:text-teal-400 transition-colors">
                 SWIM ARENA
               </span>

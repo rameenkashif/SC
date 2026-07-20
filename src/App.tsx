@@ -12,6 +12,7 @@ import { TrainersSection } from "./components/TrainersSection";
 import { ContactUsSection } from "./components/ContactUsSection";
 import { motion, useScroll, useSpring } from "motion/react";
 import { Waves, SwatchBook, HelpCircle, ArrowUp } from "lucide-react";
+import { Logo } from "./components/Logo";
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -121,9 +122,7 @@ export default function App() {
       <footer className="bg-slate-950 py-12 px-6 text-center border-t border-white/5 text-gray-500 text-xs font-mono">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="relative flex items-center justify-center w-8 h-8 rounded-full border border-teal-500/20 bg-teal-950/20 text-teal-300 font-serif text-sm font-bold">
-              S<span className="text-[7px] text-white absolute bottom-1 right-2">C</span>
-            </div>
+            <Logo className="h-6 w-auto opacity-90" />
             <span className="text-[10px] tracking-wider text-gray-400 font-sans font-black uppercase">
               Steps Sport Center • Swim Arena
             </span>

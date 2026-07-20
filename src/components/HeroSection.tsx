@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { ScrollFrameSequence } from "./ScrollFrameSequence";
+
+const HERO_FRAME_COUNT = 60;
+const heroFramePath = (index: number) => `/hero-frames/frame-${String(index + 1).padStart(3, "0")}.jpg`;
 
 interface HeroSectionProps {
   scrollProgress: number; // calculated progress (0 to 1) for the wave reveal
@@ -31,6 +35,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
     <div className="relative w-full h-[100vh] overflow-hidden bg-black select-none">
       {/* 1. Fixed Underwater Swimming Pool Digital Background */}
       <div className="absolute inset-0 pointer-events-none">
+        {/* Scroll-scrubbed dive footage: frame advances 1:1 with hero scroll progress */}
+        <ScrollFrameSequence
+          progress={scrollProgress}
+          frameCount={HERO_FRAME_COUNT}
+          framePath={heroFramePath}
+          className="absolute inset-0 w-full h-full"
+        />
+
+        {/* Scrim so the glass card and lane-line overlay stay legible over the footage */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-[#0a2540]/85" />
+
         {/* Deep blue glow under the lanes */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-blue-900/20 blur-[120px] rounded-full" />
         <div className="absolute bottom-1/4 left-1/3 w-[50vw] h-[40vh] bg-teal-900/10 blur-[100px] rounded-full" />
@@ -87,52 +102,35 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative max-w-lg w-full p-8 md:p-12 rounded-[24px] glass-panel-light shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/20 text-white overflow-hidden group"
+          className="relative max-w-lg w-full p-8 md:p-12 rounded-[24px] bg-white/[0.06] backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.35)] border border-white/15 text-white overflow-hidden flex flex-col items-center text-center"
         >
-          {/* Top light highlight sheen */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 opacity-60 pointer-events-none" />
+          <span className="text-xs uppercase tracking-[0.25em] text-white/60 font-semibold mb-1">
+            Welcome to
+          </span>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none text-white drop-shadow-md mb-6">
+            SWIM
+            <span className="block">ARENA</span>
+          </h1>
 
-          {/* Card Header Label */}
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <span className="text-xs uppercase tracking-[0.25em] text-teal-400 font-semibold block mb-1">
-                Welcome to
-              </span>
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none text-white drop-shadow-md">
-                SWIM
-                <span className="block text-teal-300">ARENA</span>
-              </h1>
-            </div>
-            {/* Logo Mark: SC styled in a handwritten/custom look matching references */}
-            <div className="relative flex items-center justify-center w-14 h-14 rounded-full border border-teal-400/40 bg-teal-950/30 text-teal-300 font-serif text-2xl font-bold tracking-tight shadow-inner">
-              S<span className="text-xs text-white absolute bottom-3 right-3 font-sans">C</span>
-              {/* Pulsing ring around the logo */}
-              <div className="absolute inset-0 rounded-full border border-teal-400/20 animate-ping opacity-75" />
-            </div>
-          </div>
-
-          <p className="text-sm md:text-base text-gray-300 font-normal leading-relaxed mb-8">
+          <p className="text-sm md:text-base text-white/75 font-normal leading-relaxed mb-8 max-w-sm">
             Experience premier sports training, dynamic aquatic fitness, and certified professional coaching at Steps Sport Center.
           </p>
 
           {/* Action Callouts */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             <a
               href="#about-us"
-              className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-white transition-all duration-300 shadow-lg shadow-teal-500/20 active:scale-95"
+              className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-white/15 hover:bg-white/25 border border-white/40 text-white transition-all duration-300 active:scale-95"
             >
               Explore Center
             </a>
             <a
               href="#register"
-              className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/30 hover:border-teal-400/50 bg-white/5 hover:bg-white/10 text-white transition-all duration-300 active:scale-95"
+              className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/25 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white transition-all duration-300 active:scale-95"
             >
               Join Swim SC
             </a>
           </div>
-
-          {/* Decorative pool line accent */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-teal-500 to-blue-600" />
         </motion.div>
       </div>
 
