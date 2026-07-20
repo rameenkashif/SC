@@ -1,11 +1,7 @@
 export interface FeaturedCard {
   id: number;
   title: string;
-  date: string;
-  quote: string;
-  medium: string;
-  dimensions: string;
-  accentColor: string; // Tailwind class color or hex code
+  description: string;
 }
 
 export interface TrainerCard {

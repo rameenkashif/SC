@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { FeaturedCard } from "../types";
-import { SwatchBook, HelpCircle, Waves, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { SwatchBook, HelpCircle, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
 // In-code premium SVG vector templates for stunning placeholders
 const SwimArenaPlaceholderSVG: React.FC<{ type: number }> = ({ type }) => {
@@ -87,30 +87,20 @@ export const FeaturedCarousel: React.FC = () => {
   const cards: FeaturedCard[] = [
     {
       id: 1,
-      title: "The Starry Night",
-      date: "June 1889",
-      quote: "I look at the stars and with all my being feel that I am a part of one of these stars.",
-      medium: "Oil on canvas",
-      dimensions: "29 x 36 1/4 in.",
-      accentColor: "from-teal-500/10 to-blue-500/20",
+      title: "Step Individual",
+      description:
+        "For free swimming. In our indoor pools with ideal temperatures, you can swim year-round, regardless of the weather. We have three pools to choose from, making us unique in Kosovo.",
     },
     {
       id: 2,
-      title: "Infinite Pool Lane",
-      date: "August 2026",
-      quote: "Water is our home, our challenge, and our triumph. Dive in and make every stroke count.",
-      medium: "Interactive Architecture",
-      dimensions: "50 x 25 Meters (10 Lanes)",
-      accentColor: "from-blue-500/10 to-indigo-500/20",
+      title: "Swimming School",
+      description:
+        "The 'STEP' swimming school offers swimming lessons for all age groups and abilities. With a team dedicated to its members, the school's program is overseen by professionals in the relevant field.",
     },
     {
       id: 3,
-      title: "Coaching Masterclass",
-      date: "Continuous",
-      quote: "Perfecting your technique is an art form. We build champions stroke by stroke, breath by breath.",
-      medium: "High-Performance Training",
-      dimensions: "Personalized (60 mins sessions)",
-      accentColor: "from-teal-500/10 to-emerald-500/20",
+      title: "Step Group",
+      description: "Group membership is a special form of membership.",
     },
   ];
 
@@ -140,32 +130,17 @@ export const FeaturedCarousel: React.FC = () => {
       <div className="absolute top-1/3 left-1/4 w-[40vw] h-[40vh] bg-teal-500/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[35vw] h-[35vh] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
 
-      {/* Section Title and Info */}
+      {/* Section Title */}
       <div className="text-center max-w-2xl mb-16 z-10 px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-400/20 text-teal-300 text-xs font-bold uppercase tracking-widest mb-4"
-        >
-          <Waves className="w-3.5 h-3.5 animate-pulse" />
-          Featured Highlights
-        </motion.div>
-        
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-white uppercase"
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase"
         >
-          Artistic Pool & <span className="text-teal-300">Coaching</span>
+          Artistic Pool & Coaching
         </motion.h2>
-        
-        <p className="text-sm md:text-base text-gray-400 font-medium">
-          Swipe or let them auto-rotate: explore Swim Arena's premium features styled as museum-quality masterpiece cards.
-        </p>
       </div>
 
       {/* 3D Stacked Card Carousel Container */}
@@ -250,31 +225,15 @@ export const FeaturedCarousel: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60" />
               </div>
 
-              {/* Card Meta Content - Styled precisely matching the image reference */}
+              {/* Card Content */}
               <div className="px-1 text-left">
-                <div className="flex items-baseline justify-between mb-2">
-                  <h3 className="text-lg font-bold tracking-tight text-white group-hover:text-teal-300 transition-colors">
-                    {card.title}
-                  </h3>
-                  <span className="text-xs text-gray-400 font-bold tracking-wider font-mono">
-                    {card.date}
-                  </span>
-                </div>
+                <h3 className="text-lg font-bold tracking-tight uppercase text-white group-hover:text-teal-300 transition-colors mb-2">
+                  {card.title}
+                </h3>
 
-                {/* Starry Night quote in italic style */}
-                <p className="text-xs text-gray-300 italic font-medium leading-relaxed mb-4 border-l-2 border-teal-500/50 pl-3">
-                  "{card.quote}"
+                <p className="text-xs text-gray-300 font-medium leading-relaxed">
+                  {card.description}
                 </p>
-
-                {/* Medium & Dimensions footer - precise museum layout style */}
-                <div className="border-t border-white/10 pt-3 mt-1 flex flex-col gap-1 text-[10px] tracking-wider text-gray-400 font-mono">
-                  <div>
-                    <span className="text-teal-400 font-bold uppercase mr-1">Medium:</span> {card.medium}
-                  </div>
-                  <div>
-                    <span className="text-teal-400 font-bold uppercase mr-1">Dimensions:</span> {card.dimensions}
-                  </div>
-                </div>
               </div>
             </motion.div>
           );
