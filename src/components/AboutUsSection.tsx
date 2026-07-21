@@ -59,7 +59,7 @@ export const AboutUsSection: React.FC = () => {
             About <span className="text-teal-600">Us</span>
           </h2>
 
-          <div className="space-y-5 text-base text-slate-700 leading-relaxed font-medium">
+          <div className="font-ui space-y-5 text-base text-slate-700 leading-relaxed font-medium">
             <p>
               <strong className="text-blue-900 font-bold">Step Sport Center</strong> is a respected name in the country, region, and beyond, with sports activities on the local and international stage. With the creation of Step Sport Center, opportunities for an active and healthy life are offered for all age groups.
             </p>

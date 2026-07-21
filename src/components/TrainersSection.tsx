@@ -56,7 +56,7 @@ export const TrainersSection: React.FC = () => {
           <h2 className="text-3xl md:text-5xl font-black tracking-tight text-blue-950 uppercase mb-4">
             Meet Our <span className="text-sky-600">Trainers</span>
           </h2>
-          <p className="text-sm text-slate-600 max-w-xl font-semibold leading-relaxed">
+          <p className="font-ui text-sm text-slate-600 max-w-xl font-semibold leading-relaxed">
             Our trainers are certified and experienced in their field. They are here to help you achieve your goals.
           </p>
         </motion.div>
@@ -188,7 +188,7 @@ export const TrainersSection: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           href="#coaches-page"
-          className="px-8 py-3.5 rounded-full text-xs font-bold tracking-widest uppercase bg-sky-500 hover:bg-sky-600 text-white font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(14,165,233,0.3)] hover:shadow-[0_4px_25px_rgba(14,165,233,0.5)] cursor-pointer"
+          className="font-ui px-8 py-3.5 rounded-full text-xs font-bold tracking-widest uppercase bg-sky-500 hover:bg-sky-600 text-white font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(14,165,233,0.3)] hover:shadow-[0_4px_25px_rgba(14,165,233,0.5)] cursor-pointer"
         >
           Read More
         </motion.a>

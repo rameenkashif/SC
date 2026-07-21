@@ -106,7 +106,7 @@ export const RegisterPage: React.FC = () => {
         <div className="mb-6 flex justify-between items-center">
           <a
             href="#home"
-            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-sky-600 hover:text-sky-700 transition-colors"
+            className="font-ui inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-sky-600 hover:text-sky-700 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -144,7 +144,7 @@ export const RegisterPage: React.FC = () => {
                   <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-blue-950">
                     Swim <span className="text-sky-600">Arena</span>
                   </h1>
-                  <p className="text-[11px] text-slate-500 font-semibold tracking-wide mt-1 uppercase">
+                  <p className="font-ui text-[11px] text-slate-500 font-semibold tracking-wide mt-1 uppercase">
                     Steps Sport Center Membership Access
                   </p>
                 </div>
@@ -156,7 +156,7 @@ export const RegisterPage: React.FC = () => {
                       setActiveTab("register");
                       window.location.hash = "#register-page?tab=register";
                     }}
-                    className={`flex-1 py-3 text-xs uppercase tracking-wider font-extrabold rounded-xl transition-all relative z-10 ${
+                    className={`font-ui flex-1 py-3 text-xs uppercase tracking-wider font-extrabold rounded-xl transition-all relative z-10 ${
                       activeTab === "register" ? "text-white" : "text-slate-500 hover:text-sky-600"
                     }`}
                   >
@@ -167,7 +167,7 @@ export const RegisterPage: React.FC = () => {
                       setActiveTab("signin");
                       window.location.hash = "#register-page?tab=signin";
                     }}
-                    className={`flex-1 py-3 text-xs uppercase tracking-wider font-extrabold rounded-xl transition-all relative z-10 ${
+                    className={`font-ui flex-1 py-3 text-xs uppercase tracking-wider font-extrabold rounded-xl transition-all relative z-10 ${
                       activeTab === "signin" ? "text-white" : "text-slate-500 hover:text-sky-600"
                     }`}
                   >
@@ -346,7 +346,7 @@ export const RegisterPage: React.FC = () => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full h-12 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white text-xs font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+                        className="font-ui w-full h-12 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white text-xs font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed mt-4"
                       >
                         {isSubmitting ? (
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -427,7 +427,7 @@ export const RegisterPage: React.FC = () => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full h-12 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white text-xs font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="font-ui w-full h-12 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white text-xs font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -459,7 +459,7 @@ export const RegisterPage: React.FC = () => {
                   Success!
                 </h2>
                 
-                <p className="text-sm text-slate-600 max-w-sm mb-10 leading-relaxed font-semibold">
+                <p className="font-ui text-sm text-slate-600 max-w-sm mb-10 leading-relaxed font-semibold">
                   {successMessage}
                 </p>
 
@@ -469,13 +469,13 @@ export const RegisterPage: React.FC = () => {
                       setIsSuccess(false);
                       setSuccessMessage("");
                     }}
-                    className="w-full h-12 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-bold tracking-widest uppercase transition-all duration-300 active:scale-95"
+                    className="font-ui w-full h-12 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-bold tracking-widest uppercase transition-all duration-300 active:scale-95"
                   >
                     Go Back to Form
                   </button>
                   <a
                     href="#home"
-                    className="w-full h-12 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-center active:scale-95"
+                    className="font-ui w-full h-12 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-center active:scale-95"
                   >
                     Return to Homepage
                   </a>

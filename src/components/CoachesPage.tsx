@@ -18,7 +18,7 @@ export const CoachesPage: React.FC = () => {
         <div className="mb-10">
           <a
             href="#home"
-            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-sky-600 hover:text-sky-700 transition-colors"
+            className="font-ui inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-sky-600 hover:text-sky-700 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home

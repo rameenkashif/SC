@@ -57,7 +57,7 @@ export const MapLocationSection: React.FC = () => {
           </h2>
 
           {/* Contact details */}
-          <div className="space-y-3 mb-10 text-slate-700 font-medium text-sm md:text-base">
+          <div className="font-ui space-y-3 mb-10 text-slate-700 font-medium text-sm md:text-base">
             <div className="flex items-center justify-center gap-2.5">
               <MapPin className="w-5 h-5 text-sky-500 shrink-0" />
               <span>Address: Rr. XYZ, Prishtina, Kosovo</span>
@@ -90,7 +90,7 @@ export const MapLocationSection: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4 }}
-                  className="text-slate-600 italic text-sm md:text-base leading-relaxed font-semibold px-2"
+                  className="font-ui text-slate-600 italic text-sm md:text-base leading-relaxed font-semibold px-2"
                 >
                   "{testimonials[activeIdx].quote}"
                   <span className="block not-italic text-xs text-slate-400 font-bold uppercase tracking-wider mt-4">

@@ -41,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -80, opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 glass-panel-light backdrop-blur-xl border-b border-sky-100 text-slate-800 select-none shadow-[0_4px_30px_rgba(14,165,233,0.08)]"
+          className="font-ui fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 glass-panel-light backdrop-blur-xl border-b border-sky-100 text-slate-800 select-none shadow-[0_4px_30px_rgba(14,165,233,0.08)]"
         >
           {/* Logo Mark */}
           <a href="#home" onClick={(e) => handleScrollTo(e, "#home")} className="flex items-center gap-3 group">

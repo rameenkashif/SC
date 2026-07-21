@@ -241,7 +241,7 @@ export const FeaturedCarousel: React.FC = () => {
                   {card.title}
                 </h3>
 
-                <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                <p className="font-ui text-xs text-slate-600 font-medium leading-relaxed">
                   {card.description}
                 </p>
               </div>

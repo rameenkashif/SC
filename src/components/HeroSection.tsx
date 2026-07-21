@@ -147,7 +147,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.75 }}
               transition={{ delay: 1.3, duration: 0.8 }}
-              className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-light leading-relaxed mb-6 max-w-lg"
+              className="font-ui text-[11px] sm:text-xs md:text-sm text-gray-200 font-light leading-relaxed mb-6 max-w-lg"
             >
               Experience premier aquatic coaching, Olympic-sized swimming facilities, and personalized training programs designed to unleash your athletic potential.
             </motion.p>
@@ -162,14 +162,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
               <a
                 id="hero-register-btn"
                 href="#register-page?tab=register"
-                className="px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase bg-sky-400 hover:bg-sky-300 text-white font-black transition-all duration-300 shadow-[0_4px_15px_rgba(56,189,248,0.3)] hover:shadow-[0_4px_20px_rgba(56,189,248,0.5)] active:scale-95 cursor-pointer"
+                className="font-ui px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest bg-sky-400 hover:bg-sky-300 text-white font-black transition-all duration-300 shadow-[0_4px_15px_rgba(56,189,248,0.3)] hover:shadow-[0_4px_20px_rgba(56,189,248,0.5)] active:scale-95 cursor-pointer"
               >
                 Register
               </a>
               <a
                 id="hero-signin-btn"
                 href="#register-page?tab=signin"
-                className="px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-black transition-all duration-300 active:scale-95 cursor-pointer"
+                className="font-ui px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-black transition-all duration-300 active:scale-95 cursor-pointer"
               >
                 Sign In
               </a>
