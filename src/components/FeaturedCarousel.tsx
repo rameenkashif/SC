@@ -3,6 +3,17 @@ import { motion, AnimatePresence } from "motion/react";
 import { FeaturedCard } from "../types";
 import { SwatchBook, HelpCircle, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
+// Import generated images
+import stepIndividualImg from "../assets/images/step_individual_1784607303489.jpg";
+import swimmingSchoolImg from "../assets/images/swimming_school_1784607322679.jpg";
+import stepGroupImg from "../assets/images/step_group_1784607344623.jpg";
+
+const cardImages: Record<number, string> = {
+  1: stepIndividualImg,
+  2: swimmingSchoolImg,
+  3: stepGroupImg,
+};
+
 // In-code premium SVG vector templates for stunning placeholders
 const SwimArenaPlaceholderSVG: React.FC<{ type: number }> = ({ type }) => {
   if (type === 1) {
@@ -124,11 +135,11 @@ export const FeaturedCarousel: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[100vh] flex flex-col items-center justify-center py-20 px-4 bg-[#0a2540] text-white overflow-hidden select-none"
+      className="relative min-h-[100vh] flex flex-col items-center justify-center py-20 px-4 bg-gradient-to-b from-sky-50 to-sky-100 text-slate-900 overflow-hidden select-none"
     >
       {/* Glowing background elements to give depth */}
-      <div className="absolute top-1/3 left-1/4 w-[40vw] h-[40vh] bg-teal-500/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[35vw] h-[35vh] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-[40vw] h-[40vh] bg-teal-200/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[35vw] h-[35vh] bg-sky-200/30 blur-[100px] rounded-full pointer-events-none" />
 
       {/* Section Title */}
       <div className="text-center max-w-2xl mb-16 z-10 px-4">
@@ -137,7 +148,7 @@ export const FeaturedCarousel: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase"
+          className="text-4xl md:text-6xl font-black tracking-tight text-blue-950 uppercase"
         >
           Artistic Pool & Coaching
         </motion.h2>
@@ -209,29 +220,28 @@ export const FeaturedCarousel: React.FC = () => {
                   setActiveIndex(idx);
                 }
               }}
-              className={`absolute max-w-[340px] md:max-w-[400px] w-full p-4 rounded-[24px] glass-panel backdrop-blur-md border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.6)] cursor-pointer select-none`}
+              className={`absolute max-w-[340px] md:max-w-[400px] w-full p-4 rounded-[24px] bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_50px_rgba(14,165,233,0.15)] cursor-pointer select-none`}
             >
-              {/* Card Image Area (Abstract SVG vector) */}
+              {/* Card Image Area (Real image from assets) */}
               <div className="relative aspect-[16/10] w-full rounded-[16px] overflow-hidden bg-slate-950 mb-5 group border border-white/5">
-                <SwimArenaPlaceholderSVG type={card.id} />
-                
-                {/* Expand / Active marker indicator overlay */}
-                <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15">
-                  <Sparkles className="w-3 h-3 text-teal-300" />
-                  <span className="text-[10px] uppercase tracking-widest font-bold text-teal-300">SC Peak</span>
-                </div>
+                <img
+                  src={cardImages[card.id]}
+                  alt={card.title}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
 
                 {/* Subtle sheen highlight */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 pointer-events-none" />
               </div>
 
               {/* Card Content */}
               <div className="px-1 text-left">
-                <h3 className="text-lg font-bold tracking-tight uppercase text-white group-hover:text-teal-300 transition-colors mb-2">
+                <h3 className="text-lg font-bold tracking-tight uppercase text-blue-950 group-hover:text-sky-600 transition-colors mb-2">
                   {card.title}
                 </h3>
 
-                <p className="text-xs text-gray-300 font-medium leading-relaxed">
+                <p className="text-xs text-slate-600 font-medium leading-relaxed">
                   {card.description}
                 </p>
               </div>
@@ -244,7 +254,7 @@ export const FeaturedCarousel: React.FC = () => {
       <div className="flex items-center justify-center gap-6 mt-10 z-10">
         <button
           onClick={handlePrev}
-          className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/30 text-white transition-all active:scale-90"
+          className="flex items-center justify-center w-12 h-12 rounded-full border border-sky-200 bg-sky-100/50 hover:bg-sky-200/50 text-blue-950 transition-all active:scale-90"
           aria-label="Previous card"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -257,7 +267,7 @@ export const FeaturedCarousel: React.FC = () => {
               key={idx}
               onClick={() => setActiveIndex(idx)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                activeIndex === idx ? "w-8 bg-teal-400" : "w-2 bg-white/20 hover:bg-white/40"
+                activeIndex === idx ? "w-8 bg-sky-500" : "w-2 bg-sky-200 hover:bg-sky-300"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
@@ -266,7 +276,7 @@ export const FeaturedCarousel: React.FC = () => {
 
         <button
           onClick={handleNext}
-          className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/30 text-white transition-all active:scale-90"
+          className="flex items-center justify-center w-12 h-12 rounded-full border border-sky-200 bg-sky-100/50 hover:bg-sky-200/50 text-blue-950 transition-all active:scale-90"
           aria-label="Next card"
         >
           <ChevronRight className="w-5 h-5" />

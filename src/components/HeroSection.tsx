@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import { ScrollFrameSequence } from "./ScrollFrameSequence";
+import { MoreHorizontal, Phone, Instagram, MapPin, Globe, Droplet, ArrowUpRight } from "lucide-react";
+import { Logo } from "./Logo";
 
 const HERO_FRAME_COUNT = 60;
 const heroFramePath = (index: number) => `/hero-frames/frame-${String(index + 1).padStart(3, "0")}.jpg`;
@@ -44,17 +46,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
         />
 
         {/* Scrim so the glass card and lane-line overlay stay legible over the footage */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-[#0a2540]/85" />
+        <div className="absolute inset-0 bg-black/45" />
 
         {/* Deep blue glow under the lanes */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-blue-900/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-1/4 left-1/3 w-[50vw] h-[40vh] bg-teal-900/10 blur-[100px] rounded-full" />
+        <div className="absolute bottom-1/4 left-1/3 w-[50vw] h-[40vh] bg-sky-900/10 blur-[100px] rounded-full" />
 
         {/* Lane lines in perspective */}
         <svg className="absolute inset-0 w-full h-full opacity-35" preserveAspectRatio="none">
           <defs>
             <linearGradient id="lane-grad" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="#0d9488" stopOpacity="0.8" />
+              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.8" />
               <stop offset="60%" stopColor="#1e3a8a" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#000000" stopOpacity="0" />
             </linearGradient>
@@ -96,40 +98,115 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       </div>
 
-      {/* 2. Centered Glass-morphism Text Card */}
-      <div className="absolute inset-0 flex items-center justify-center p-4">
+      {/* 2. Glass-morphism Text Card spanning the entire page with dynamic borders & margins, styled after AKINA reference */}
+      <div className="absolute top-4 bottom-16 left-4 right-4 md:top-8 md:bottom-20 md:left-8 md:right-8 z-10 flex justify-center items-center">
         <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative max-w-lg w-full p-8 md:p-12 rounded-[24px] bg-white/[0.06] backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.35)] border border-white/15 text-white overflow-hidden flex flex-col items-center text-center"
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full h-full p-4 md:p-8 rounded-[28px] md:rounded-[40px] bg-white/[0.02] backdrop-blur-[6px] border border-white/15 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] text-white overflow-hidden flex flex-col justify-between items-center"
         >
-          <span className="text-xs uppercase tracking-[0.25em] text-white/60 font-semibold mb-1">
-            Welcome to
-          </span>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none text-white drop-shadow-md mb-6">
-            SWIM
-            <span className="block">ARENA</span>
-          </h1>
+          {/* Subtle light highlight sheen */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.05] opacity-40 pointer-events-none" />
 
-          <p className="text-sm md:text-base text-white/75 font-normal leading-relaxed mb-8 max-w-sm">
-            Experience premier sports training, dynamic aquatic fitness, and certified professional coaching at Steps Sport Center.
-          </p>
+          {/* TOP BAR */}
+          <div className="w-full flex justify-between items-center gap-4 z-10">
+            {/* Left circular option button */}
+            <motion.button
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
+              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 flex items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 hover:text-white transition-all cursor-pointer"
+              onClick={() => {
+                const trainersEl = document.getElementById("coaches");
+                if (trainersEl) {
+                  trainersEl.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              title="View Coaches"
+            >
+              <MoreHorizontal className="w-5 h-5" />
+            </motion.button>
 
-          {/* Action Callouts */}
-          <div className="flex flex-wrap justify-center gap-3">
-            <a
+            {/* Empty spacer so layout remains balanced */}
+            <div className="hidden md:block w-10 h-10" />
+
+            {/* Right pill button (e.g. Swim Programs / Find Tips) */}
+            <motion.a
+              whileHover={{ scale: 1.03, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
+              whileTap={{ scale: 0.97 }}
               href="#about-us"
-              className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-white/15 hover:bg-white/25 border border-white/40 text-white transition-all duration-300 active:scale-95"
+              className="px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-[9px] md:text-[10px] font-bold tracking-widest text-sky-300 hover:text-sky-200 transition-all flex items-center gap-2 uppercase"
             >
-              Explore Center
-            </a>
-            <a
-              href="#register"
-              className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/25 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white transition-all duration-300 active:scale-95"
+              <span>Explore</span>
+              <ArrowUpRight className="w-3 h-3" />
+            </motion.a>
+          </div>
+
+          {/* CENTER TEXT & CALL TO ACTIONS */}
+          <div className="w-full flex-1 flex flex-col justify-center items-center text-center max-w-3xl px-2 md:px-12 py-2 md:py-4 -mt-4 md:-mt-8 z-10">
+            {/* App Logo on top of the text block */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.95, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
+              className="mb-4"
             >
-              Join Swim SC
-            </a>
+              <Logo className="h-8 md:h-10 w-auto filter brightness-0 invert opacity-90" />
+            </motion.div>
+
+            {/* Center align text "dive into excellence" */}
+            <motion.span
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 0.85, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="text-[10px] md:text-xs uppercase tracking-[0.45em] text-sky-300 font-black mb-2 text-center"
+            >
+              DIVE INTO EXCELLENCE
+            </motion.span>
+
+            {/* Staggered title: STEP (in blue) Sport Center */}
+            <motion.h1
+              initial={{ opacity: 0, filter: "blur(4px)", y: 15 }}
+              animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+              transition={{ delay: 0.9, duration: 1.1, ease: "easeOut" }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] uppercase mb-4 text-center"
+            >
+              <span className="text-sky-400">STEP</span>{" "}
+              <span className="text-white">SPORT CENTER</span>
+            </motion.h1>
+
+            {/* Subtext description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.75 }}
+              transition={{ delay: 1.3, duration: 0.8 }}
+              className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium leading-relaxed mb-6 max-w-lg"
+            >
+              Experience premier aquatic coaching, Olympic-sized swimming facilities, and personalized training programs designed to unleash your athletic potential.
+            </motion.p>
+
+             {/* Action Callouts: Two CTA buttons "Register" and "Sign In" */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="flex flex-wrap justify-center gap-4"
+            >
+              <a
+                id="hero-register-btn"
+                href="#register-page?tab=register"
+                className="px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase bg-sky-400 hover:bg-sky-300 text-black font-black transition-all duration-300 shadow-[0_4px_15px_rgba(56,189,248,0.3)] hover:shadow-[0_4px_20px_rgba(56,189,248,0.5)] active:scale-95 cursor-pointer"
+              >
+                Register
+              </a>
+              <a
+                id="hero-signin-btn"
+                href="#register-page?tab=signin"
+                className="px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-black transition-all duration-300 active:scale-95 cursor-pointer"
+              >
+                Sign In
+              </a>
+            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -143,9 +220,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
       >
         {/* Layered waves for high-fidelity water depth (matching reference image stack) */}
         
-        {/* Wave Layer 1: Teal Accent wave */}
+        {/* Wave Layer 1: Sky Accent wave */}
         <svg
-          className="absolute top-0 left-0 w-full h-[180px] text-teal-800/60 drop-shadow-[-2px_-4px_8px_rgba(13,148,136,0.2)]"
+          className="absolute top-0 left-0 w-full h-[180px] text-sky-500/30 drop-shadow-[-2px_-4px_8px_rgba(56,189,248,0.25)]"
           viewBox="0 0 1440 180"
           preserveAspectRatio="none"
           fill="currentColor"
