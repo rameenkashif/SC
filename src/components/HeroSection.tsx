@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { ScrollFrameSequence } from "./ScrollFrameSequence";
-import { MoreHorizontal, Phone, Instagram, MapPin, Globe, Droplet, ArrowUpRight } from "lucide-react";
+import { Phone, Instagram, MapPin, Globe, Droplet } from "lucide-react";
 import { Logo } from "./Logo";
 
 const HERO_FRAME_COUNT = 60;
@@ -109,39 +109,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
           {/* Subtle light highlight sheen */}
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.05] opacity-40 pointer-events-none" />
 
-          {/* TOP BAR */}
-          <div className="w-full flex justify-between items-center gap-4 z-10">
-            {/* Left circular option button */}
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 hover:text-white transition-all cursor-pointer"
-              onClick={() => {
-                const trainersEl = document.getElementById("coaches");
-                if (trainersEl) {
-                  trainersEl.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              title="View Coaches"
-            >
-              <MoreHorizontal className="w-5 h-5" />
-            </motion.button>
-
-            {/* Empty spacer so layout remains balanced */}
-            <div className="hidden md:block w-10 h-10" />
-
-            {/* Right pill button (e.g. Swim Programs / Find Tips) */}
-            <motion.a
-              whileHover={{ scale: 1.03, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
-              whileTap={{ scale: 0.97 }}
-              href="#about-us"
-              className="px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-[9px] md:text-[10px] font-bold tracking-widest text-sky-300 hover:text-sky-200 transition-all flex items-center gap-2 uppercase"
-            >
-              <span>Explore</span>
-              <ArrowUpRight className="w-3 h-3" />
-            </motion.a>
-          </div>
-
           {/* CENTER TEXT & CALL TO ACTIONS */}
           <div className="w-full flex-1 flex flex-col justify-center items-center text-center max-w-3xl px-2 md:px-12 py-2 md:py-4 -mt-4 md:-mt-8 z-10">
             {/* App Logo on top of the text block */}
@@ -180,7 +147,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.75 }}
               transition={{ delay: 1.3, duration: 0.8 }}
-              className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium leading-relaxed mb-6 max-w-lg"
+              className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-light leading-relaxed mb-6 max-w-lg"
             >
               Experience premier aquatic coaching, Olympic-sized swimming facilities, and personalized training programs designed to unleash your athletic potential.
             </motion.p>
@@ -195,7 +162,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
               <a
                 id="hero-register-btn"
                 href="#register-page?tab=register"
-                className="px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase bg-sky-400 hover:bg-sky-300 text-black font-black transition-all duration-300 shadow-[0_4px_15px_rgba(56,189,248,0.3)] hover:shadow-[0_4px_20px_rgba(56,189,248,0.5)] active:scale-95 cursor-pointer"
+                className="px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase bg-sky-400 hover:bg-sky-300 text-white font-black transition-all duration-300 shadow-[0_4px_15px_rgba(56,189,248,0.3)] hover:shadow-[0_4px_20px_rgba(56,189,248,0.5)] active:scale-95 cursor-pointer"
               >
                 Register
               </a>
@@ -253,16 +220,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
         {/* Under-wave solid block */}
         <div className="absolute top-[210px] left-0 right-0 h-full bg-[#0a2540] -mt-1" />
       </div>
-
-      {/* Little downward bounce arrow indicator */}
-      {scrollProgress < 0.1 && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/50 animate-bounce text-xs font-semibold tracking-widest uppercase pointer-events-none">
-          <span>Scroll Down</span>
-          <svg className="w-4 h-4 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      )}
     </div>
   );
 };
