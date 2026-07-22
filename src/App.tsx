@@ -12,6 +12,7 @@ import { TrainersSection } from "./components/TrainersSection";
 import { MapLocationSection } from "./components/MapLocationSection";
 import { CoachesPage } from "./components/CoachesPage";
 import { RegisterPage } from "./components/RegisterPage";
+import { SignInPage } from "./components/SignInPage";
 import { AboutUsPage } from "./components/AboutUsPage";
 import { motion } from "motion/react";
 import { ArrowUp } from "lucide-react";
@@ -21,7 +22,7 @@ export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [currentPage, setCurrentPage] = useState<"home" | "about-us" | "coaches" | "register">("home");
+  const [currentPage, setCurrentPage] = useState<"home" | "about-us" | "coaches" | "register" | "signin">("home");
 
   // Synchronize hash with the currentPage state & handle sub-section scrolling
   useEffect(() => {
@@ -38,6 +39,10 @@ export default function App() {
       } else if (hash.startsWith("#register-page")) {
         setCurrentPage("register");
         setActiveSection("register");
+        window.scrollTo({ top: 0 });
+      } else if (hash.startsWith("#signin-page")) {
+        setCurrentPage("signin");
+        setActiveSection("signin");
         window.scrollTo({ top: 0 });
       } else {
         setCurrentPage("home");
@@ -146,6 +151,8 @@ export default function App() {
           <CoachesPage />
         ) : currentPage === "register" ? (
           <RegisterPage />
+        ) : currentPage === "signin" ? (
+          <SignInPage />
         ) : (
           <>
             {/* 2. Hero Section with fixed canvas & rising SVG wave */}
