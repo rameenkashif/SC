@@ -84,17 +84,9 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
             <a
               href="#signin-page"
               onClick={(e) => handleScrollTo(e, "#signin-page")}
-              className="text-xs font-extrabold tracking-widest text-sky-300 hover:text-white transition-colors"
+              className="px-5 py-2 rounded-full border border-white/70 text-xs font-black tracking-wider text-white hover:bg-white/10 transition-all duration-300 active:scale-95"
             >
               Sign In
-            </a>
-
-            <a
-              href="#register-page"
-              onClick={(e) => handleScrollTo(e, "#register-page")}
-              className="px-5 py-2 rounded-full text-xs font-black tracking-wider bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(56,189,248,0.3)] hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all duration-300 active:scale-95"
-            >
-              Register
             </a>
 
             {/* Language Selector */}
@@ -164,22 +156,13 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                   </a>
                 ))}
                 <div className="flex justify-between items-center mt-2 pt-2 border-t border-white/10">
-                  <div className="flex gap-4">
-                    <a
-                      href="#signin-page"
-                      onClick={(e) => handleScrollTo(e, "#signin-page")}
-                      className="text-xs font-extrabold tracking-widest text-sky-400 hover:text-sky-300"
-                    >
-                      Sign In
-                    </a>
-                    <a
-                      href="#register-page"
-                      onClick={(e) => handleScrollTo(e, "#register-page")}
-                      className="text-xs font-extrabold tracking-widest text-white hover:text-sky-400"
-                    >
-                      Register
-                    </a>
-                  </div>
+                  <a
+                    href="#signin-page"
+                    onClick={(e) => handleScrollTo(e, "#signin-page")}
+                    className="px-4 py-1.5 rounded-full border border-white/70 text-xs font-black tracking-wider text-white hover:bg-white/10 transition-colors"
+                  >
+                    Sign In
+                  </a>
 
                   {/* Mobile language picker */}
                   <div className="flex gap-2">

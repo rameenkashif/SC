@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, CheckCircle, Plus } from "lucide-react";
+import { CheckCircle, Plus } from "lucide-react";
 
 type Category = "individual" | "adults" | "kids-fitness" | "swimming-school" | "group";
 
@@ -208,20 +208,6 @@ export const RegisterPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-100 via-sky-50 to-white text-slate-800 pt-24 pb-16 px-6 flex flex-col justify-center">
       <div className="max-w-5xl w-full mx-auto my-auto">
-        {/* Back navigation */}
-        <div className="mb-6 flex justify-between items-center">
-          <a
-            href="#home"
-            className="font-ui inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-sky-600 hover:text-sky-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Home
-          </a>
-          <span className="text-[10px] font-mono text-slate-500 uppercase">
-            Steps Sport Center
-          </span>
-        </div>
-
         {/* Register Page Card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98, y: 15 }}
