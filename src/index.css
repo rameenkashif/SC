@@ -73,3 +73,53 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Ultra-Clear Liquid Glass Container with Refraction Bending */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(1.5px) contrast(1.2) saturate(2.0) brightness(1.08);
+  -webkit-backdrop-filter: blur(1.5px) contrast(1.2) saturate(2.0) brightness(1.08);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.35),
+    inset 0 0 16px 2px rgba(255, 255, 255, 0.25),
+    0 15px 35px -5px rgba(0, 0, 0, 0.45),
+    0 0 25px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+/* Infinite Horizontal Scroll Marquee Animation */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.3333%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 25s linear infinite;
+}
+
+
+/* Curved Glossy Glass Top Glare */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0.35) 0%, 
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+

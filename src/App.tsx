@@ -12,6 +12,7 @@ import { TrainersSection } from "./components/TrainersSection";
 import { MapLocationSection } from "./components/MapLocationSection";
 import { CoachesPage } from "./components/CoachesPage";
 import { RegisterPage } from "./components/RegisterPage";
+import { AboutUsPage } from "./components/AboutUsPage";
 import { motion } from "motion/react";
 import { ArrowUp } from "lucide-react";
 import { Logo } from "./components/Logo";
@@ -20,13 +21,17 @@ export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [currentPage, setCurrentPage] = useState<"home" | "coaches" | "register">("home");
+  const [currentPage, setCurrentPage] = useState<"home" | "about-us" | "coaches" | "register">("home");
 
   // Synchronize hash with the currentPage state & handle sub-section scrolling
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash;
-      if (hash === "#coaches-page") {
+      if (hash === "#about-us-page" || hash === "#about-us") {
+        setCurrentPage("about-us");
+        setActiveSection("about-us-page");
+        window.scrollTo({ top: 0 });
+      } else if (hash === "#coaches-page") {
         setCurrentPage("coaches");
         setActiveSection("coaches");
         window.scrollTo({ top: 0 });
@@ -117,8 +122,8 @@ export default function App() {
       {/* 1. Sticky/Slide-in glass-morphic Header */}
       <Header isVisible={isHeaderVisible} activeSection={activeSection} />
 
-      {/* Elegant global scroll progress bar on top of the sticky header (Home page only) */}
-      {isHeaderVisible && currentPage === "home" && (
+      {/* Elegant global scroll progress bar on top of the sticky header */}
+      {isHeaderVisible && (
         <div className="fixed top-0 left-0 right-0 h-1 bg-white/5 z-50 pointer-events-none">
           <motion.div 
             className="h-full bg-gradient-to-r from-sky-400 to-blue-500 origin-left"
@@ -135,7 +140,9 @@ export default function App() {
 
       {/* Main Single-Page Section Stack / Multi-Page Routing */}
       <main className="w-full">
-        {currentPage === "coaches" ? (
+        {currentPage === "about-us" ? (
+          <AboutUsPage />
+        ) : currentPage === "coaches" ? (
           <CoachesPage />
         ) : currentPage === "register" ? (
           <RegisterPage />

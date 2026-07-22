@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Globe, Menu, X, SwatchBook, Award } from "lucide-react";
-import { Logo } from "./Logo";
+import { Globe, Menu, X } from "lucide-react";
 
 interface HeaderProps {
-  isVisible: boolean; // True when the deep blue wave covers the screen (scrollProgress >= 0.9)
+  isVisible: boolean; // True when header is active
   activeSection: string;
 }
 
@@ -15,14 +14,14 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
 
   const navItems = [
     { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about-us" },
+    { name: "About Us", href: "#about-us-page" },
     { name: "Coaches", href: "#coaches-page" },
     { name: "Register", href: "#register-page" },
   ];
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
-    if (href.includes("-page")) {
+    if (href.includes("-page") || href === "#home") {
       window.location.hash = href;
       return;
     }
@@ -41,16 +40,15 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -80, opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-ui fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 glass-panel-light backdrop-blur-xl border-b border-sky-100 text-slate-800 select-none shadow-[0_4px_30px_rgba(14,165,233,0.08)]"
+          className="font-ui fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 bg-slate-950/85 backdrop-blur-xl border-b border-white/10 text-white select-none shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
         >
-          {/* Logo Mark */}
-          <a href="#home" onClick={(e) => handleScrollTo(e, "#home")} className="flex items-center gap-3 group">
-            <Logo className="h-9 w-auto drop-shadow-[0_2px_4px_rgba(14,165,233,0.15)] group-hover:opacity-90 transition-opacity" />
-            <div className="hidden sm:flex flex-col border-l border-slate-250 pl-3">
-              <span className="font-sans text-sm font-black tracking-wider leading-none text-blue-950 group-hover:text-sky-600 transition-colors">
+          {/* Brand Title */}
+          <a href="#home" onClick={(e) => handleScrollTo(e, "#home")} className="flex items-center group">
+            <div className="flex flex-col">
+              <span className="font-sans text-sm sm:text-base font-black tracking-wider leading-none text-white group-hover:text-sky-300 transition-colors">
                 SWIM ARENA
               </span>
-              <span className="text-[9px] tracking-widest uppercase text-sky-600 font-bold leading-none mt-1">
+              <span className="text-[9px] sm:text-[10px] tracking-widest uppercase text-sky-400 font-extrabold leading-none mt-1">
                 STEPS SPORT CENTER
               </span>
             </div>
@@ -59,21 +57,26 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
+              const currentHash = typeof window !== "undefined" ? window.location.hash : "";
+              const isActive =
+                activeSection === item.href.substring(1) ||
+                currentHash === item.href ||
+                (currentHash === "" && item.href === "#home");
+
               return (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
-                  className={`text-xs font-extrabold tracking-widest hover:text-sky-600 transition-all relative py-1.5 ${
-                    isActive ? "text-sky-600" : "text-slate-500"
+                  className={`text-xs font-extrabold tracking-widest hover:text-sky-300 transition-all relative py-1.5 ${
+                    isActive ? "text-sky-400" : "text-gray-300 hover:text-white"
                   }`}
                 >
                   {item.name}
                   {isActive && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-sky-500"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -87,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
             <a
               href="#register-page?tab=signin"
               onClick={(e) => handleScrollTo(e, "#register-page?tab=signin")}
-              className="text-xs font-extrabold tracking-widest text-sky-600 hover:text-sky-700 transition-colors"
+              className="text-xs font-extrabold tracking-widest text-sky-300 hover:text-white transition-colors"
             >
               Sign In
             </a>
@@ -95,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
             <a
               href="#register-page?tab=register"
               onClick={(e) => handleScrollTo(e, "#register-page?tab=register")}
-              className="px-5 py-2 rounded-full text-[11px] font-extrabold tracking-wider bg-sky-500 hover:bg-sky-600 text-white shadow-sm shadow-sky-500/10 hover:shadow-sky-500/20 transition-all duration-300 active:scale-95"
+              className="px-5 py-2 rounded-full text-xs font-black tracking-wider bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(56,189,248,0.3)] hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all duration-300 active:scale-95"
             >
               Register
             </a>
@@ -104,10 +107,10 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
             <div className="relative">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1.5 text-slate-500 hover:text-sky-600 font-extrabold transition-colors p-1"
+                className="flex items-center gap-1.5 text-gray-300 hover:text-sky-300 font-extrabold transition-colors p-1"
                 aria-label="Change language"
               >
-                <Globe className="w-4 h-4 text-sky-600" />
+                <Globe className="w-4 h-4 text-sky-400" />
                 <span className="text-xs font-bold">{currentLang}</span>
               </button>
 
@@ -117,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute right-0 mt-2 py-2 w-24 rounded-lg bg-white border border-sky-100 shadow-xl overflow-hidden z-50 text-xs text-left text-slate-800"
+                    className="absolute right-0 mt-2 py-2 w-28 rounded-xl bg-slate-900 border border-white/15 shadow-2xl overflow-hidden z-50 text-xs text-left text-white backdrop-blur-xl"
                   >
                     {["EN", "ES", "TR"].map((lang) => (
                       <button
@@ -126,8 +129,8 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                           setCurrentLang(lang);
                           setLangOpen(false);
                         }}
-                        className={`w-full px-4 py-1.5 hover:bg-sky-50 text-left font-bold transition-colors ${
-                          currentLang === lang ? "text-sky-600" : "text-slate-500"
+                        className={`w-full px-4 py-2 hover:bg-sky-950/60 text-left font-bold transition-colors ${
+                          currentLang === lang ? "text-sky-400 bg-sky-950/40" : "text-gray-300"
                         }`}
                       >
                         {lang === "EN" ? "English" : lang === "ES" ? "Español" : "Türkçe"}
@@ -142,9 +145,9 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex md:hidden items-center justify-center w-10 h-10 rounded-full bg-sky-50 border border-sky-100 active:scale-95"
+            className="flex md:hidden items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/15 text-white active:scale-95"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-slate-700" /> : <Menu className="w-5 h-5 text-slate-700" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
           </button>
 
           {/* Mobile Overlay Menu */}
@@ -154,31 +157,31 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="absolute top-20 left-0 right-0 bg-white/95 backdrop-blur-2xl border-b border-sky-100 py-6 px-8 flex flex-col gap-5 md:hidden z-40 overflow-hidden shadow-2xl"
+                className="absolute top-20 left-0 right-0 bg-slate-950/95 backdrop-blur-2xl border-b border-white/10 py-6 px-8 flex flex-col gap-5 md:hidden z-40 overflow-hidden shadow-2xl text-white"
               >
                 {navItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     onClick={(e) => handleScrollTo(e, item.href)}
-                    className="text-sm font-extrabold tracking-widest text-slate-700 hover:text-sky-600 transition-colors border-b border-slate-100 pb-2"
+                    className="text-sm font-extrabold tracking-widest text-gray-200 hover:text-sky-400 transition-colors border-b border-white/5 pb-2"
                   >
                     {item.name}
                   </a>
                 ))}
-                <div className="flex justify-between items-center mt-2 pt-2 border-t border-sky-100">
+                <div className="flex justify-between items-center mt-2 pt-2 border-t border-white/10">
                   <div className="flex gap-4">
                     <a
                       href="#register-page?tab=signin"
                       onClick={(e) => handleScrollTo(e, "#register-page?tab=signin")}
-                      className="text-xs font-extrabold tracking-widest text-sky-600 hover:text-sky-700"
+                      className="text-xs font-extrabold tracking-widest text-sky-400 hover:text-sky-300"
                     >
                       Sign In
                     </a>
                     <a
                       href="#register-page?tab=register"
                       onClick={(e) => handleScrollTo(e, "#register-page?tab=register")}
-                      className="text-xs font-extrabold tracking-widest text-slate-700 hover:text-sky-600"
+                      className="text-xs font-extrabold tracking-widest text-white hover:text-sky-400"
                     >
                       Register
                     </a>
@@ -190,8 +193,8 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                       <button
                         key={lang}
                         onClick={() => setCurrentLang(lang)}
-                        className={`text-xs px-2.5 py-1 rounded border font-bold ${
-                          currentLang === lang ? "bg-sky-100 text-sky-600 border-sky-200" : "border-slate-200 text-slate-400"
+                        className={`text-xs px-2.5 py-1 rounded-md border font-bold ${
+                          currentLang === lang ? "bg-sky-500/20 text-sky-400 border-sky-400/40" : "border-white/15 text-gray-400"
                         }`}
                       >
                         {lang}
