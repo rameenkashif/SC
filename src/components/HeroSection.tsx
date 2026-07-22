@@ -99,26 +99,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
       </div>
 
       {/* 2. Glass-morphism Text Card spanning the entire page with dynamic borders & margins, styled after AKINA reference */}
-      <div className="absolute top-4 bottom-16 left-4 right-4 md:top-8 md:bottom-20 md:left-8 md:right-8 z-10 flex justify-center items-center">
+      <div className="absolute top-4 bottom-0 left-4 right-4 md:top-8 md:bottom-0 md:left-8 md:right-8 z-10 flex justify-center items-center">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full h-full p-4 md:p-8 rounded-[28px] md:rounded-[40px] bg-white/[0.02] backdrop-blur-[6px] border border-white/15 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] text-white overflow-hidden flex flex-col justify-between items-center"
+          className="relative w-full h-full p-4 md:p-8 rounded-[28px] md:rounded-[40px] bg-white/[0.02] backdrop-blur-[6px] border border-white/15 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] text-white flex flex-col justify-between items-center"
         >
           {/* Subtle light highlight sheen */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.05] opacity-40 pointer-events-none" />
+          <div className="absolute inset-0 rounded-[28px] md:rounded-[40px] bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.05] opacity-40 pointer-events-none" />
 
           {/* CENTER TEXT & CALL TO ACTIONS */}
-          <div className="w-full flex-1 flex flex-col justify-center items-center text-center max-w-3xl px-2 md:px-12 py-2 md:py-4 -mt-4 md:-mt-8 z-10">
+          <div className="w-full flex-1 flex flex-col justify-center items-center text-center max-w-3xl px-2 md:px-12 py-2 md:py-4 mt-16 md:mt-24 z-10">
             {/* App Logo on top of the text block */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 0.95, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.7 }}
-              className="mb-4"
+              className="mb-4 -mt-32 md:-mt-40"
             >
-              <Logo className="h-8 md:h-10 w-auto filter brightness-0 invert opacity-90" />
+              <Logo className="h-16 md:h-20 w-auto filter brightness-0 invert opacity-90" />
             </motion.div>
 
             {/* Center align text "dive into excellence" */}
@@ -157,12 +157,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5, duration: 0.8 }}
-              className="flex flex-wrap justify-center gap-4"
+              className="flex flex-wrap justify-center gap-4 mt-6"
             >
               <a
                 id="hero-register-btn"
                 href="#register-page?tab=register"
-                className="font-ui px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest bg-sky-400 hover:bg-sky-300 text-white font-black transition-all duration-300 shadow-[0_4px_15px_rgba(56,189,248,0.3)] hover:shadow-[0_4px_20px_rgba(56,189,248,0.5)] active:scale-95 cursor-pointer"
+                className="font-ui px-6 md:px-8 py-3 rounded-full text-[11px] font-bold tracking-widest border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-black transition-all duration-300 active:scale-95 cursor-pointer"
               >
                 Register
               </a>

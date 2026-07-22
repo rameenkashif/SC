@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
           <a href="#home" onClick={(e) => handleScrollTo(e, "#home")} className="flex items-center gap-3 group">
             <Logo className="h-9 w-auto drop-shadow-[0_2px_4px_rgba(14,165,233,0.15)] group-hover:opacity-90 transition-opacity" />
             <div className="hidden sm:flex flex-col border-l border-slate-250 pl-3">
-              <span className="text-sm font-black tracking-wider leading-none text-blue-950 group-hover:text-sky-600 transition-colors">
+              <span className="font-sans text-sm font-black tracking-wider leading-none text-blue-950 group-hover:text-sky-600 transition-colors">
                 SWIM ARENA
               </span>
               <span className="text-[9px] tracking-widest uppercase text-sky-600 font-bold leading-none mt-1">
@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
-                  className={`text-xs uppercase font-extrabold tracking-widest hover:text-sky-600 transition-all relative py-1.5 ${
+                  className={`text-xs font-extrabold tracking-widest hover:text-sky-600 transition-all relative py-1.5 ${
                     isActive ? "text-sky-600" : "text-slate-500"
                   }`}
                 >
@@ -87,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
             <a
               href="#register-page?tab=signin"
               onClick={(e) => handleScrollTo(e, "#register-page?tab=signin")}
-              className="text-xs uppercase font-extrabold tracking-widest text-sky-600 hover:text-sky-700 transition-colors"
+              className="text-xs font-extrabold tracking-widest text-sky-600 hover:text-sky-700 transition-colors"
             >
               Sign In
             </a>
@@ -95,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
             <a
               href="#register-page?tab=register"
               onClick={(e) => handleScrollTo(e, "#register-page?tab=register")}
-              className="px-5 py-2 rounded-full text-[11px] font-extrabold tracking-wider uppercase bg-sky-500 hover:bg-sky-600 text-white shadow-sm shadow-sky-500/10 hover:shadow-sky-500/20 transition-all duration-300 active:scale-95"
+              className="px-5 py-2 rounded-full text-[11px] font-extrabold tracking-wider bg-sky-500 hover:bg-sky-600 text-white shadow-sm shadow-sky-500/10 hover:shadow-sky-500/20 transition-all duration-300 active:scale-95"
             >
               Register
             </a>
@@ -161,7 +161,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                     key={item.name}
                     href={item.href}
                     onClick={(e) => handleScrollTo(e, item.href)}
-                    className="text-sm font-extrabold tracking-widest uppercase text-slate-700 hover:text-sky-600 transition-colors border-b border-slate-100 pb-2"
+                    className="text-sm font-extrabold tracking-widest text-slate-700 hover:text-sky-600 transition-colors border-b border-slate-100 pb-2"
                   >
                     {item.name}
                   </a>
@@ -171,14 +171,14 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                     <a
                       href="#register-page?tab=signin"
                       onClick={(e) => handleScrollTo(e, "#register-page?tab=signin")}
-                      className="text-xs uppercase font-extrabold tracking-widest text-sky-600 hover:text-sky-700"
+                      className="text-xs font-extrabold tracking-widest text-sky-600 hover:text-sky-700"
                     >
                       Sign In
                     </a>
                     <a
                       href="#register-page?tab=register"
                       onClick={(e) => handleScrollTo(e, "#register-page?tab=register")}
-                      className="text-xs uppercase font-extrabold tracking-widest text-slate-700 hover:text-sky-600"
+                      className="text-xs font-extrabold tracking-widest text-slate-700 hover:text-sky-600"
                     >
                       Register
                     </a>
