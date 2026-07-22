@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Globe, Menu, X } from "lucide-react";
+import { Logo } from "./Logo";
 
 interface HeaderProps {
   isVisible: boolean; // True when header is active
@@ -42,16 +43,9 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="font-ui fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 bg-slate-950/85 backdrop-blur-xl border-b border-white/10 text-white select-none shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
         >
-          {/* Brand Title */}
+          {/* Brand Logo */}
           <a href="#home" onClick={(e) => handleScrollTo(e, "#home")} className="flex items-center group">
-            <div className="flex flex-col">
-              <span className="font-sans text-sm sm:text-base font-black tracking-wider leading-none text-white group-hover:text-sky-300 transition-colors">
-                SWIM ARENA
-              </span>
-              <span className="text-[9px] sm:text-[10px] tracking-widest uppercase text-sky-400 font-extrabold leading-none mt-1">
-                STEPS SPORT CENTER
-              </span>
-            </div>
+            <Logo className="h-9 sm:h-10 w-auto group-hover:opacity-80 transition-opacity" />
           </a>
 
           {/* Desktop Navigation Links */}

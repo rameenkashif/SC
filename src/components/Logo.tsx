@@ -24,7 +24,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "h-9 w-auto" }) => {
     <img
       src="/logo.png"
       alt="SC Sports & Leisure"
-      className={`${className} object-contain filter drop-shadow-[0_2px_8px_rgba(56,189,248,0.4)]`}
+      className={`${className} object-contain`}
       draggable={false}
       onError={() => setImgError(true)}
     />

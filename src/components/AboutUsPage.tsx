@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Thermometer, Maximize2, Layers, Flame, Dumbbell, Sparkles } from "lucide-react";
+import { Thermometer, Maximize2, Layers } from "lucide-react";
 
 // Facility images from PDF
 import facilityAerialImg from "../assets/images/facility_aerial_view_1784711466372.jpg";
@@ -253,16 +253,9 @@ export const AboutUsPage: React.FC = () => {
         {/* ------------------------------------------------------------- */}
         <section className="my-20 py-12 relative overflow-hidden rounded-3xl bg-gradient-to-b from-sky-950/80 via-blue-950 to-slate-950 border border-sky-400/20 shadow-2xl backdrop-blur-xl">
           <div className="text-center px-4 mb-8">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/30 text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-sky-300 animate-pulse" />
-              FACILITY VISUAL SHOWCASE
-            </span>
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tight">
               Explore Our <span className="text-sky-400">Arena Gallery</span>
             </h3>
-            <p className="font-ui text-xs sm:text-sm text-gray-300 mt-2 max-w-lg mx-auto font-light">
-              Continuous 3D perspective preview of all Step Sport Center facilities
-            </p>
           </div>
 
           {/* Curved 3D perspective infinite looping marquee */}
@@ -356,10 +349,6 @@ export const AboutUsPage: React.FC = () => {
               <p className="text-slate-700 font-ui text-sm sm:text-base font-normal leading-relaxed">
                 Dedicated youth fitness studio designed to build motor skills, athletic agility, confidence, and strength in a fun, safe, supervised environment equipped with tailored gym gear.
               </p>
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-sky-800 pt-1">
-                <Dumbbell className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                <span>Specialized youth gymnastics & functional training equipment</span>
-              </div>
             </div>
             <div className="md:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-white/80 shadow-md group">
@@ -396,10 +385,6 @@ export const AboutUsPage: React.FC = () => {
               <p className="text-slate-700 font-ui text-sm sm:text-base font-normal leading-relaxed">
                 Premium Finnish wooden thermal sauna designed for post-workout muscle recovery, circulation enhancement, detoxification, and deep relaxation.
               </p>
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-amber-900 pt-1">
-                <Flame className="w-5 h-5 text-amber-600 flex-shrink-0" />
-                <span>Therapeutic heat relaxation for all athletic members</span>
-              </div>
             </div>
           </motion.div>
         </section>
