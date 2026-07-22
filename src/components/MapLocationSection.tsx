@@ -60,7 +60,7 @@ export const MapLocationSection: React.FC = () => {
           <div className="font-ui space-y-3 mb-10 text-slate-700 font-medium text-sm md:text-base">
             <div className="flex items-center justify-center gap-2.5">
               <MapPin className="w-5 h-5 text-sky-500 shrink-0" />
-              <span>Address: Rr. XYZ, Prishtina, Kosovo</span>
+              <span>Address: Veternik, M25-2, Prishtina, Kosovo</span>
             </div>
             <div className="flex items-center justify-center gap-2.5">
               <Phone className="w-5 h-5 text-sky-500 shrink-0" />
