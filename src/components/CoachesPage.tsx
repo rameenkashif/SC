@@ -119,6 +119,7 @@ export const CoachesPage: React.FC = () => {
               <img
                 src={besartImg}
                 alt="Besart Shala"
+                referrerPolicy="no-referrer"
                 className="w-full aspect-square object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
               />
             </div>

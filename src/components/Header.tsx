@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                   {isActive && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-sky-400"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}

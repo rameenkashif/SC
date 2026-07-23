@@ -126,48 +126,48 @@ export const AboutUsPage: React.FC = () => {
           </div>
         </motion.section>
 
-        {/* LIGHT BLUE SECTION 1: PREMISES PART 1 */}
-        <section className="my-16 py-12 px-6 sm:px-10 rounded-3xl bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100/80 text-slate-900 border border-sky-200/80 shadow-2xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-blue-950 uppercase tracking-tight">
-              Step Sport Center <span className="text-sky-600">Premises</span>
+        {/* PREMISES PART 1 */}
+        <section className="my-16 py-8 space-y-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
+              Step Sport Center <span className="text-sky-400">Premises</span>
             </h2>
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-8">
             {/* PREMISE 1: Olympic Size Pool with 5 Lanes */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="bg-white/45 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/80 shadow-[0_8px_32px_0_rgba(14,165,233,0.1)] hover:bg-white/60 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+              className="bg-slate-900/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-sky-400/20 shadow-2xl hover:bg-slate-900/80 hover:border-sky-400/50 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
             >
               <div className="md:col-span-7 space-y-4">
-                <h3 className="text-2xl sm:text-3xl font-black text-blue-950 uppercase">
+                <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
                   Olympic Size Pool with 5 Lanes
                 </h3>
-                <ul className="space-y-3 pt-2 text-slate-700 font-ui text-sm sm:text-base font-normal">
+                <ul className="space-y-3 pt-2 text-gray-200 font-ui text-sm sm:text-base font-normal">
                   <li className="flex items-center gap-3">
-                    <Thermometer className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                    <span>The pool water temperature is <strong className="text-blue-950 font-bold">26.5–30°C</strong></span>
+                    <Thermometer className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                    <span>The pool water temperature is <strong className="text-sky-300 font-bold">26.5–30°C</strong></span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Maximize2 className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                    <span>The pool is <strong className="text-blue-950 font-bold">25 m long, 12 m wide, and 1.85 m deep</strong></span>
+                    <Maximize2 className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                    <span>The pool is <strong className="text-sky-300 font-bold">25 m long, 12 m wide, and 1.85 m deep</strong></span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Layers className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                    <span>Five competitive lanes, each <strong className="text-blue-950 font-bold">2.35 m wide</strong></span>
+                    <Layers className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                    <span>Five competitive lanes, each <strong className="text-sky-300 font-bold">2.35 m wide</strong></span>
                   </li>
                 </ul>
               </div>
               <div className="md:col-span-5">
-                <div className="rounded-2xl overflow-hidden border border-white/80 shadow-md group">
+                <div className="rounded-2xl overflow-hidden border border-white/20 bg-slate-950 p-1 shadow-xl group">
                   <img
                     src={olympicPoolImg}
                     alt="Olympic Size Pool with 5 Lanes"
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>
@@ -179,33 +179,33 @@ export const AboutUsPage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="bg-white/45 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/80 shadow-[0_8px_32px_0_rgba(14,165,233,0.1)] hover:bg-white/60 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+              className="bg-slate-900/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-sky-400/20 shadow-2xl hover:bg-slate-900/80 hover:border-sky-400/50 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
             >
               <div className="md:col-span-5 order-2 md:order-1">
-                <div className="rounded-2xl overflow-hidden border border-white/80 shadow-md group">
+                <div className="rounded-2xl overflow-hidden border border-white/20 bg-slate-950 p-1 shadow-xl group">
                   <img
                     src={trainingPoolImg}
                     alt="Training Pool with 4 Lanes"
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>
               <div className="md:col-span-7 order-1 md:order-2 space-y-4">
-                <h3 className="text-2xl sm:text-3xl font-black text-blue-950 uppercase">
+                <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
                   Training Pool with 4 Lanes
                 </h3>
-                <ul className="space-y-3 pt-2 text-slate-700 font-ui text-sm sm:text-base font-normal">
+                <ul className="space-y-3 pt-2 text-gray-200 font-ui text-sm sm:text-base font-normal">
                   <li className="flex items-center gap-3">
-                    <Maximize2 className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                    <span>The pool is <strong className="text-blue-950 font-bold">25 m long, 10 m wide, and 1.65 m deep</strong></span>
+                    <Maximize2 className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                    <span>The pool is <strong className="text-sky-300 font-bold">25 m long, 10 m wide, and 1.65 m deep</strong></span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Thermometer className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                    <span>The pool water temperature is <strong className="text-blue-950 font-bold">27–30°C</strong></span>
+                    <Thermometer className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                    <span>The pool water temperature is <strong className="text-sky-300 font-bold">27–30°C</strong></span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Layers className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                    <span>Four competitive lanes, each <strong className="text-blue-950 font-bold">2.35 m wide</strong></span>
+                    <Layers className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                    <span>Four competitive lanes, each <strong className="text-sky-300 font-bold">2.35 m wide</strong></span>
                   </li>
                 </ul>
               </div>
@@ -217,29 +217,29 @@ export const AboutUsPage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="bg-white/45 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/80 shadow-[0_8px_32px_0_rgba(14,165,233,0.1)] hover:bg-white/60 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+              className="bg-slate-900/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-sky-400/20 shadow-2xl hover:bg-slate-900/80 hover:border-sky-400/50 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
             >
               <div className="md:col-span-7 space-y-4">
-                <h3 className="text-2xl sm:text-3xl font-black text-blue-950 uppercase">
+                <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
                   Recreational Pool
                 </h3>
-                <ul className="space-y-3 pt-2 text-slate-700 font-ui text-sm sm:text-base font-normal">
+                <ul className="space-y-3 pt-2 text-gray-200 font-ui text-sm sm:text-base font-normal">
                   <li className="flex items-center gap-3">
-                    <Maximize2 className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                    <span>The pool is <strong className="text-blue-950 font-bold">15 m long, 6.5 m wide, and 0.85 m deep</strong></span>
+                    <Maximize2 className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                    <span>The pool is <strong className="text-sky-300 font-bold">15 m long, 6.5 m wide, and 0.85 m deep</strong></span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Thermometer className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                    <span>The pool water temperature is <strong className="text-blue-950 font-bold">29°C</strong></span>
+                    <Thermometer className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                    <span>The pool water temperature is <strong className="text-sky-300 font-bold">29°C</strong></span>
                   </li>
                 </ul>
               </div>
               <div className="md:col-span-5">
-                <div className="rounded-2xl overflow-hidden border border-white/80 shadow-md group">
+                <div className="rounded-2xl overflow-hidden border border-white/20 bg-slate-950 p-1 shadow-xl group">
                   <img
                     src={recreationalPool1Img}
                     alt="Recreational Pool 1"
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>
@@ -298,37 +298,37 @@ export const AboutUsPage: React.FC = () => {
           </div>
         </section>
 
-        {/* LIGHT BLUE SECTION 2: PREMISES PART 2 (RECREATIONAL 2, KIDS FITNESS, SAUNA) */}
-        <section className="my-16 py-12 px-6 sm:px-10 rounded-3xl bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100/80 text-slate-900 border border-sky-200/80 shadow-2xl space-y-12">
+        {/* PREMISES PART 2 (RECREATIONAL 2, KIDS FITNESS, SAUNA) */}
+        <section className="my-16 py-8 space-y-8">
           {/* PREMISE 4: Recreational Pool 2 */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="bg-white/45 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/80 shadow-[0_8px_32px_0_rgba(14,165,233,0.1)] hover:bg-white/60 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+            className="bg-slate-900/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-sky-400/20 shadow-2xl hover:bg-slate-900/80 hover:border-sky-400/50 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
           >
             <div className="md:col-span-5 order-2 md:order-1">
-              <div className="rounded-2xl overflow-hidden border border-white/80 shadow-md group">
+              <div className="rounded-2xl overflow-hidden border border-white/20 bg-slate-950 p-1 shadow-xl group">
                 <img
                   src={recreationalPool2Img}
                   alt="Recreational Pool 2"
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
             <div className="md:col-span-7 order-1 md:order-2 space-y-4">
-              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 uppercase">
+              <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
                 Recreational Pool
               </h3>
-              <ul className="space-y-3 pt-2 text-slate-700 font-ui text-sm sm:text-base font-normal">
+              <ul className="space-y-3 pt-2 text-gray-200 font-ui text-sm sm:text-base font-normal">
                 <li className="flex items-center gap-3">
-                  <Maximize2 className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                  <span>The pool is <strong className="text-blue-950 font-bold">25 m long, 10 m wide, and 1.65 m deep</strong></span>
+                  <Maximize2 className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                  <span>The pool is <strong className="text-sky-300 font-bold">25 m long, 10 m wide, and 1.65 m deep</strong></span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Thermometer className="w-5 h-5 text-sky-600 flex-shrink-0" />
-                  <span>The pool water temperature is <strong className="text-blue-950 font-bold">27–30°C</strong></span>
+                  <Thermometer className="w-5 h-5 text-sky-400 flex-shrink-0" />
+                  <span>The pool water temperature is <strong className="text-sky-300 font-bold">27–30°C</strong></span>
                 </li>
               </ul>
             </div>
@@ -340,22 +340,22 @@ export const AboutUsPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="bg-white/45 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/80 shadow-[0_8px_32px_0_rgba(14,165,233,0.1)] hover:bg-white/60 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+            className="bg-slate-900/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-sky-400/20 shadow-2xl hover:bg-slate-900/80 hover:border-sky-400/50 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
           >
             <div className="md:col-span-7 space-y-4">
-              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 uppercase">
+              <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
                 Fitness Kids
               </h3>
-              <p className="text-slate-700 font-ui text-sm sm:text-base font-normal leading-relaxed">
+              <p className="text-gray-200 font-ui text-sm sm:text-base font-normal leading-relaxed">
                 Dedicated youth fitness studio designed to build motor skills, athletic agility, confidence, and strength in a fun, safe, supervised environment equipped with tailored gym gear.
               </p>
             </div>
             <div className="md:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-white/80 shadow-md group">
+              <div className="rounded-2xl overflow-hidden border border-white/20 bg-slate-950 p-1 shadow-xl group">
                 <img
                   src={fitnessKidsImg}
                   alt="Fitness Kids"
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -367,22 +367,22 @@ export const AboutUsPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="bg-white/45 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/80 shadow-[0_8px_32px_0_rgba(14,165,233,0.1)] hover:bg-white/60 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+            className="bg-slate-900/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-sky-400/20 shadow-2xl hover:bg-slate-900/80 hover:border-sky-400/50 transition-all duration-500 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
           >
             <div className="md:col-span-5 order-2 md:order-1">
-              <div className="rounded-2xl overflow-hidden border border-white/80 shadow-md group">
+              <div className="rounded-2xl overflow-hidden border border-white/20 bg-slate-950 p-1 shadow-xl group">
                 <img
                   src={saunaImg}
                   alt="Sauna Facility"
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
             <div className="md:col-span-7 order-1 md:order-2 space-y-4">
-              <h3 className="text-2xl sm:text-3xl font-black text-blue-950 uppercase">
+              <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
                 Sauna
               </h3>
-              <p className="text-slate-700 font-ui text-sm sm:text-base font-normal leading-relaxed">
+              <p className="text-gray-200 font-ui text-sm sm:text-base font-normal leading-relaxed">
                 Premium Finnish wooden thermal sauna designed for post-workout muscle recovery, circulation enhancement, detoxification, and deep relaxation.
               </p>
             </div>

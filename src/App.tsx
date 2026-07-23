@@ -15,7 +15,7 @@ import { RegisterPage } from "./components/RegisterPage";
 import { SignInPage } from "./components/SignInPage";
 import { AboutUsPage } from "./components/AboutUsPage";
 import { motion } from "motion/react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Instagram, Facebook } from "lucide-react";
 import { Logo } from "./components/Logo";
 
 export default function App() {
@@ -191,6 +191,44 @@ export default function App() {
             <span className="text-[10px] tracking-wider text-gray-400 font-sans font-black uppercase">
               Steps Sport Center • Swim Arena
             </span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Plain Small White Social Icons */}
+            <a
+              href="https://linktr.ee/StepSportCenter?fbclid=PAZXh0bgNhZW0CMTEAAab-jMdOYXcTDUid0g5hQfCGeMuItxrQydbTRx0Og3ybI17Y3OGw3bkMCnk_aem_TZIZ2U6MaIXwcKeEsavbyg"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Linktree"
+              title="Linktree"
+              className="text-white hover:text-sky-400 transition-colors p-1.5 hover:bg-white/10 rounded-lg flex items-center justify-center"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M13.736 5.853l4.005-4.177a1.04 1.04 0 0 0-1.488-1.455l-4.25 4.433V0h-2.006v4.654L5.747.221a1.04 1.04 0 0 0-1.488 1.455l4.005 4.177H1.056A1.056 1.056 0 0 0 0 6.909c0 .583.473 1.056 1.056 1.056h6.183v2.483H2.883A1.056 1.056 0 0 0 1.827 11.5c0 .583.473 1.056 1.056 1.056h4.355v2.483H4.156A1.056 1.056 0 0 0 3.1 16.095c0 .583.473 1.056 1.056 1.056h2.083v5.793c0 .583.473 1.056 1.056 1.056h1.408c.583 0 1.056-.473 1.056-1.056v-5.793h2.083a1.056 1.056 0 0 0 1.056-1.056 1.056 1.056 0 0 0-1.056-1.056h-2.083v-2.483h4.355a1.056 1.056 0 0 0 1.056-1.056 1.056 1.056 0 0 0-1.056-1.056h-4.355V7.965h6.183A1.056 1.056 0 0 0 24 6.909a1.056 1.056 0 0 0-1.056-1.056h-9.208z" />
+              </svg>
+            </a>
+
+            <a
+              href="https://www.instagram.com/stepsportcenter?igsh=eGk4d2Z0NmYyZTdo"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              title="Instagram"
+              className="text-white hover:text-sky-400 transition-colors p-1.5 hover:bg-white/10 rounded-lg flex items-center justify-center"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+
+            <a
+              href="https://www.facebook.com/steparena.ks/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              title="Facebook"
+              className="text-white hover:text-sky-400 transition-colors p-1.5 hover:bg-white/10 rounded-lg flex items-center justify-center"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
           </div>
 
           <p className="font-sans font-medium text-gray-400">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { CheckCircle, Plus } from "lucide-react";
+import olympicPoolImg from "../assets/images/olympic_pool_5lanes_1784711486001.jpg";
+import brightSwimmerBgImg from "../assets/images/bright_swimmer_bg_1784780224088.jpg";
 
 type Category = "individual" | "adults" | "kids-fitness" | "swimming-school" | "group";
 
@@ -92,15 +94,15 @@ const emptyMember = (): MemberInfo => ({
 });
 
 const inputClass =
-  "w-full h-11 px-4 rounded-xl border border-sky-100 bg-white/60 text-slate-800 placeholder-slate-400 font-normal text-xs focus:border-sky-500 focus:bg-white focus:outline-none transition-all duration-300";
+  "w-full h-11 px-4 rounded-xl border border-slate-200 bg-white/90 text-slate-800 placeholder-slate-400 font-normal text-xs focus:border-sky-500 focus:bg-white focus:outline-none transition-all duration-300 shadow-sm";
 const selectClass =
-  "w-full h-11 px-3 rounded-xl border border-sky-100 bg-white text-slate-800 font-normal text-xs focus:border-sky-500 focus:outline-none transition-all duration-300 cursor-pointer";
-const labelClass = "text-[10px] font-medium uppercase text-slate-500 tracking-wider mb-1.5 block";
+  "w-full h-11 px-3 rounded-xl border border-slate-200 bg-white/90 text-slate-800 font-normal text-xs focus:border-sky-500 focus:outline-none transition-all duration-300 cursor-pointer shadow-sm";
+const labelClass = "text-[10px] font-semibold uppercase text-slate-600 tracking-wider mb-1.5 block";
 const toggleBtnClass = (active: boolean) =>
   `px-3 py-2 rounded-lg border text-[10px] font-medium uppercase tracking-wide transition-colors ${
-    active ? "bg-sky-500 border-sky-500 text-white" : "border-sky-200 text-slate-600 hover:border-sky-400"
+    active ? "bg-sky-500 border-sky-500 text-white font-bold shadow-sm" : "border-slate-200 text-slate-600 hover:border-sky-300 bg-white/70"
   }`;
-const planCardClass = "rounded-2xl border border-sky-200 bg-white p-5 shadow-md space-y-4";
+const planCardClass = "rounded-2xl border border-white/90 bg-white/85 backdrop-blur-xl p-5 shadow-lg space-y-4 text-slate-800";
 
 export const RegisterPage: React.FC = () => {
   const [category, setCategory] = useState<Category>("individual");
@@ -206,19 +208,30 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-100 via-sky-50 to-white text-slate-800 pt-24 pb-16 px-6 flex flex-col justify-center">
-      <div className="max-w-5xl w-full mx-auto my-auto">
-        {/* Register Page Card */}
+    <div className="min-h-screen relative text-slate-800 pt-24 pb-16 px-6 flex flex-col justify-center overflow-hidden">
+      {/* Background Swimmer Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={brightSwimmerBgImg}
+          alt="Swimmer Background"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-sky-900/15 backdrop-blur-[1px]" />
+      </div>
+
+      <div className="max-w-5xl w-full mx-auto my-auto relative z-10">
+        {/* Register Page Card - Light Glassmorphism */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="relative p-6 md:p-10 rounded-[32px] border border-white/75 bg-white/45 backdrop-blur-2xl shadow-2xl overflow-hidden"
+          className="relative p-6 md:p-10 rounded-3xl border border-white/80 bg-white/80 backdrop-blur-2xl shadow-2xl overflow-hidden"
         >
           {/* Decorative glowing background accent */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-sky-400/15 blur-[60px] rounded-full pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-450/15 blur-[60px] rounded-full pointer-events-none" />
-          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-sky-300/30 blur-[60px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-300/30 blur-[60px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-sky-400/50 to-transparent" />
 
           <AnimatePresence mode="wait">
             {!isSuccess ? (
@@ -228,8 +241,8 @@ export const RegisterPage: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                {/* Page Heading, matching home page heading size & weight */}
-                <h1 className="text-4xl md:text-6xl font-black tracking-tight uppercase text-blue-950 text-center mb-8">
+                {/* Page Heading */}
+                <h1 className="text-4xl md:text-5xl font-black tracking-tight uppercase text-slate-900 text-center mb-8">
                   Register
                 </h1>
 
@@ -242,7 +255,7 @@ export const RegisterPage: React.FC = () => {
                 >
                   {/* Category selector */}
                   <div className="flex flex-wrap items-center justify-between gap-4">
-                    <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
                       Choose a Category
                     </p>
                     <select
@@ -261,7 +274,7 @@ export const RegisterPage: React.FC = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* LEFT: Your Information */}
                     <div className="space-y-4">
-                      <h3 className="text-sm font-black uppercase text-blue-950 tracking-wide">
+                      <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
                         Your Information
                       </h3>
 
@@ -333,7 +346,7 @@ export const RegisterPage: React.FC = () => {
                             <button
                               type="button"
                               onClick={addGroupDate}
-                              className="mt-2 w-full h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-[11px] font-medium uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5"
+                              className="mt-2 w-full h-10 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-sky-700 text-[11px] font-medium uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5"
                             >
                               <Plus className="w-3.5 h-3.5" /> Add Another Date
                             </button>
@@ -414,10 +427,10 @@ export const RegisterPage: React.FC = () => {
                           {members.map((member, idx) => (
                             <div
                               key={idx}
-                              className={idx > 0 ? "pt-4 mt-4 border-t border-sky-100 space-y-4" : "space-y-4"}
+                              className={idx > 0 ? "pt-4 mt-4 border-t border-slate-200 space-y-4" : "space-y-4"}
                             >
                               {idx > 0 && (
-                                <p className="text-[10px] font-semibold uppercase text-sky-600 tracking-wider">
+                                <p className="text-[10px] font-semibold uppercase text-sky-700 tracking-wider">
                                   Member {idx + 1}
                                 </p>
                               )}
@@ -533,7 +546,7 @@ export const RegisterPage: React.FC = () => {
                               </div>
 
                               {(category === "individual" || category === "swimming-school") && (
-                                <div className="pt-2 border-t border-sky-100">
+                                <div className="pt-2 border-t border-slate-200">
                                   <label className={labelClass}>Swimming Skills</label>
                                   <div className="space-y-2">
                                     {swimmingSkillOptions.map((skill) => (
@@ -546,7 +559,7 @@ export const RegisterPage: React.FC = () => {
                                           name={`swim-skill-${idx}`}
                                           checked={member.swimmingSkill === skill}
                                           onChange={() => updateMember(idx, { swimmingSkill: skill })}
-                                          className="w-4 h-4 border-sky-200 text-sky-500 focus:ring-sky-500"
+                                          className="w-4 h-4 border-slate-300 text-sky-500 focus:ring-sky-500 bg-white"
                                         />
                                         {skill}
                                       </label>
@@ -555,7 +568,7 @@ export const RegisterPage: React.FC = () => {
                                 </div>
                               )}
 
-                              <div className="pt-2 border-t border-sky-100">
+                              <div className="pt-2 border-t border-slate-200">
                                 <label className={labelClass}>Health Problems</label>
                                 <div className="flex gap-3">
                                   <button
@@ -595,7 +608,7 @@ export const RegisterPage: React.FC = () => {
                             <button
                               type="button"
                               onClick={addMember}
-                              className="w-full h-11 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-[11px] font-medium uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5"
+                              className="w-full h-11 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-sky-700 text-[11px] font-medium uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5"
                             >
                               Add Member <Plus className="w-3.5 h-3.5" />
                             </button>
@@ -607,7 +620,7 @@ export const RegisterPage: React.FC = () => {
                     {/* RIGHT: Plan / Pricing */}
                     <div className="space-y-4">
                       {category === "group" && (
-                        <div className="rounded-3xl p-8 bg-gradient-to-br from-sky-400 to-blue-600 text-white text-center shadow-xl">
+                        <div className="rounded-3xl p-8 bg-gradient-to-br from-sky-500 to-blue-600 text-white text-center shadow-xl">
                           <p className="text-sm font-medium uppercase tracking-widest opacity-90 mb-2">
                             Total Amount
                           </p>
@@ -617,7 +630,7 @@ export const RegisterPage: React.FC = () => {
 
                       {category === "adults" && (
                         <>
-                          <h3 className="text-sm font-black uppercase text-blue-950 tracking-wide">
+                          <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
                             Step Adults
                           </h3>
                           <div className={planCardClass}>
@@ -652,7 +665,7 @@ export const RegisterPage: React.FC = () => {
                               </select>
                             </div>
                             <div>
-                              <p className="text-[10px] font-medium text-sky-600 uppercase tracking-wide mb-2">
+                              <p className="text-[10px] font-semibold text-sky-700 uppercase tracking-wide mb-2">
                                 Choose {adultsMaxDays} Day{adultsMaxDays === 1 ? "" : "s"}
                               </p>
                               <div className="grid grid-cols-2 gap-2">
@@ -673,15 +686,15 @@ export const RegisterPage: React.FC = () => {
                                 ))}
                               </div>
                             </div>
-                            <div className="flex items-center justify-between pt-2 border-t border-sky-100">
-                              <span className="text-[10px] font-medium uppercase text-slate-500 tracking-wider">
+                            <div className="flex items-center justify-between pt-2 border-t border-slate-200">
+                              <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
                                 Price
                               </span>
-                              <span className="text-2xl font-black text-blue-950">{formatPrice(adultsPrice)}</span>
+                              <span className="text-2xl font-black text-slate-900">{formatPrice(adultsPrice)}</span>
                             </div>
                             <button
                               type="button"
-                              className="w-full h-11 rounded-full border-2 border-sky-500 text-sky-600 text-xs font-black uppercase tracking-wider hover:bg-sky-500 hover:text-white transition-colors"
+                              className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                             >
                               Choose Plan
                             </button>
@@ -691,7 +704,7 @@ export const RegisterPage: React.FC = () => {
 
                       {category === "kids-fitness" && (
                         <>
-                          <h3 className="text-sm font-black uppercase text-blue-950 tracking-wide">
+                          <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
                             Kids Fitness
                           </h3>
                           <div className={planCardClass}>
@@ -724,7 +737,7 @@ export const RegisterPage: React.FC = () => {
                               </select>
                             </div>
                             <div>
-                              <p className="text-[10px] font-medium text-sky-600 uppercase tracking-wide mb-2">
+                              <p className="text-[10px] font-semibold text-sky-700 uppercase tracking-wide mb-2">
                                 Schedule
                               </p>
                               <div className="grid grid-cols-2 gap-2">
@@ -745,15 +758,15 @@ export const RegisterPage: React.FC = () => {
                                 Choose {kidsMaxDays} day{kidsMaxDays === 1 ? "" : "s"} of the week
                               </p>
                             </div>
-                            <div className="flex items-center justify-between pt-2 border-t border-sky-100">
-                              <span className="text-[10px] font-medium uppercase text-slate-500 tracking-wider">
+                            <div className="flex items-center justify-between pt-2 border-t border-slate-200">
+                              <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
                                 Price
                               </span>
-                              <span className="text-2xl font-black text-blue-950">{formatPrice(kidsPrice)}</span>
+                              <span className="text-2xl font-black text-slate-900">{formatPrice(kidsPrice)}</span>
                             </div>
                             <button
                               type="button"
-                              className="w-full h-11 rounded-full border-2 border-sky-500 text-sky-600 text-xs font-black uppercase tracking-wider hover:bg-sky-500 hover:text-white transition-colors"
+                              className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                             >
                               Choose Plan
                             </button>
@@ -763,14 +776,14 @@ export const RegisterPage: React.FC = () => {
 
                       {category === "swimming-school" && (
                         <>
-                          <h3 className="text-sm font-black uppercase text-blue-950 tracking-wide">
+                          <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
                             Swimming School
                           </h3>
                           {swimCards.map((card, idx) => {
                             const price = swimEntriesPriceMap[card.entries] * (1 - card.discount);
                             return (
                               <div key={idx} className={planCardClass}>
-                                <p className="text-[10px] font-semibold text-sky-600 uppercase tracking-wide">
+                                <p className="text-[10px] font-bold text-sky-700 uppercase tracking-wide">
                                   {card.label}
                                 </p>
                                 <div>
@@ -817,18 +830,18 @@ export const RegisterPage: React.FC = () => {
                                     </select>
                                   </div>
                                 )}
-                                <p className="text-[11px] text-slate-500 font-normal">
-                                  Entries: <span className="font-medium text-slate-700">{card.entries}</span>
+                                <p className="text-[11px] text-slate-600 font-normal">
+                                  Entries: <span className="font-semibold text-slate-800">{card.entries}</span>
                                 </p>
-                                <div className="flex items-center justify-between pt-2 border-t border-sky-100">
-                                  <span className="text-[10px] font-medium uppercase text-slate-500 tracking-wider">
+                                <div className="flex items-center justify-between pt-2 border-t border-slate-200">
+                                  <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
                                     Price
                                   </span>
-                                  <span className="text-2xl font-black text-blue-950">{formatPrice(price)}</span>
+                                  <span className="text-2xl font-black text-slate-900">{formatPrice(price)}</span>
                                 </div>
                                 <button
                                   type="button"
-                                  className="w-full h-11 rounded-full border-2 border-sky-500 text-sky-600 text-xs font-black uppercase tracking-wider hover:bg-sky-500 hover:text-white transition-colors"
+                                  className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                                 >
                                   Choose Plan
                                 </button>
@@ -840,7 +853,7 @@ export const RegisterPage: React.FC = () => {
 
                       {category === "individual" && (
                         <>
-                          <h3 className="text-sm font-black uppercase text-blue-950 tracking-wide">
+                          <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
                             Individual
                           </h3>
 
@@ -877,17 +890,17 @@ export const RegisterPage: React.FC = () => {
                             </div>
                             {individualCards[0].entries ? (
                               <>
-                                <div className="flex items-center justify-between pt-2 border-t border-sky-100">
-                                  <span className="text-[10px] font-medium uppercase text-slate-500 tracking-wider">
+                                <div className="flex items-center justify-between pt-2 border-t border-slate-200">
+                                  <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
                                     Price
                                   </span>
-                                  <span className="text-2xl font-black text-blue-950">
+                                  <span className="text-2xl font-black text-slate-900">
                                     {formatPrice(individualEntriesPriceMap[individualCards[0].entries])}
                                   </span>
                                 </div>
                                 <button
                                   type="button"
-                                  className="w-full h-11 rounded-full border-2 border-sky-500 text-sky-600 text-xs font-black uppercase tracking-wider hover:bg-sky-500 hover:text-white transition-colors"
+                                  className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                                 >
                                   Choose Plan
                                 </button>
@@ -915,20 +928,20 @@ export const RegisterPage: React.FC = () => {
                                 ))}
                               </select>
                             </div>
-                            <p className="text-[11px] text-slate-500 font-normal">
-                              Entries: <span className="font-medium text-slate-700">unlimited</span>
+                            <p className="text-[11px] text-slate-600 font-normal">
+                              Entries: <span className="font-semibold text-slate-800">unlimited</span>
                             </p>
-                            <div className="flex items-center justify-between pt-2 border-t border-sky-100">
-                              <span className="text-[10px] font-medium uppercase text-slate-500 tracking-wider">
+                            <div className="flex items-center justify-between pt-2 border-t border-slate-200">
+                              <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
                                 Price
                               </span>
-                              <span className="text-2xl font-black text-blue-950">
+                              <span className="text-2xl font-black text-slate-900">
                                 {formatPrice(individualEntriesPriceMap["Unlimited Entries"])}
                               </span>
                             </div>
                             <button
                               type="button"
-                              className="w-full h-11 rounded-full border-2 border-sky-500 text-sky-600 text-xs font-black uppercase tracking-wider hover:bg-sky-500 hover:text-white transition-colors"
+                              className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                             >
                               Choose Plan
                             </button>
@@ -939,18 +952,18 @@ export const RegisterPage: React.FC = () => {
                   </div>
 
                   {/* Agree Checkbox + Submit */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-sky-100">
+                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-200">
                     <div className="flex items-center gap-3">
                       <input
                         id="agree-checkbox"
                         type="checkbox"
                         checked={agree}
                         onChange={(e) => setAgree(e.target.checked)}
-                        className="w-4 h-4 rounded border-sky-200 bg-white text-sky-500 focus:ring-sky-500"
+                        className="w-4 h-4 rounded border-slate-300 bg-white text-sky-500 focus:ring-sky-500"
                       />
                       <label htmlFor="agree-checkbox" className="text-[11px] text-slate-600 font-normal select-none">
                         I agree to the{" "}
-                        <a href="#about-us" className="text-sky-600 hover:underline">
+                        <a href="#about-us" className="text-sky-600 hover:underline font-medium">
                           terms and conditions
                         </a>
                       </label>
@@ -959,7 +972,7 @@ export const RegisterPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="font-ui h-12 px-8 rounded-full text-xs font-black tracking-wider uppercase bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(56,189,248,0.3)] hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="font-ui h-12 px-8 rounded-full text-xs font-black tracking-wider uppercase bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/30 transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {isSubmitting ? (
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -985,7 +998,7 @@ export const RegisterPage: React.FC = () => {
                   <CheckCircle className="w-10 h-10 animate-bounce" />
                 </div>
 
-                <h2 className="text-2xl font-black uppercase tracking-tight text-blue-950 mb-3">
+                <h2 className="text-2xl font-black uppercase tracking-tight text-slate-900 mb-3">
                   Success!
                 </h2>
 
@@ -999,13 +1012,13 @@ export const RegisterPage: React.FC = () => {
                       setIsSuccess(false);
                       setSuccessMessage("");
                     }}
-                    className="font-ui w-full h-12 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-medium tracking-widest uppercase transition-all duration-300 active:scale-95"
+                    className="font-ui w-full h-12 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 text-xs font-medium tracking-widest uppercase transition-all duration-300 active:scale-95"
                   >
                     Go Back to Form
                   </button>
                   <a
                     href="#home"
-                    className="font-ui w-full h-12 rounded-full bg-sky-500 hover:bg-sky-400 text-white text-xs font-black tracking-wider uppercase shadow-[0_0_15px_rgba(56,189,248,0.3)] hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all duration-300 flex items-center justify-center active:scale-95"
+                    className="font-ui w-full h-12 rounded-full bg-sky-500 hover:bg-sky-600 text-white text-xs font-black tracking-wider uppercase shadow-md shadow-sky-500/20 transition-all duration-300 flex items-center justify-center active:scale-95"
                   >
                     Return to Homepage
                   </a>
