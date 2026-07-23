@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
-import trainer1 from "../assets/images/trainer_1_1784608728880.jpg";
-import trainer2 from "../assets/images/trainer_2_1784608745933.jpg";
-import trainer3 from "../assets/images/trainer_3_1784608768746.jpg";
-import trainer4 from "../assets/images/trainer_4_1784608788501.jpg";
-import trainer5 from "../assets/images/trainer_5_1784608807860.jpg";
+import ritaImg from "../assets/images/coaches/rita_zeqiri.jpg";
+import besartImg from "../assets/images/coaches/besart_shala.jpg";
+import hanaImg from "../assets/images/coaches/hana_fejzullahu.jpg";
+import elonaImg from "../assets/images/coaches/elona_toverlani.jpg";
+import erjonBuzhalaImg from "../assets/images/coaches/erjon_buzhala.jpg";
 
 export const TrainersSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   const trainers = [
-    { id: 1, image: trainer1 },
-    { id: 2, image: trainer2 },
-    { id: 3, image: trainer3 },
-    { id: 4, image: trainer4 },
-    { id: 5, image: trainer5 },
+    { id: 1, name: "Rita Zeqiri", image: ritaImg },
+    { id: 2, name: "Besart Shala", image: besartImg },
+    { id: 3, name: "Hana Fejzullahu", image: hanaImg },
+    { id: 4, name: "Elona Toverlani", image: elonaImg },
+    { id: 5, name: "Erjon Buzhala", image: erjonBuzhalaImg },
   ];
 
   useEffect(() => {
@@ -128,7 +128,7 @@ export const TrainersSection: React.FC = () => {
             >
               <img
                 src={trainer.image}
-                alt={`Trainer ${trainer.id}`}
+                alt={trainer.name}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover select-none pointer-events-none"
               />

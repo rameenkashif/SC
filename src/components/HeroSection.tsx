@@ -123,7 +123,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
             {/* Center align text "dive into excellence" */}
             <motion.span
               initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 0.85, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
               className="text-[10px] sm:text-xs md:text-xs uppercase tracking-[0.45em] text-sky-300 font-black mb-3 text-center"
             >

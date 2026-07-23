@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MapPin, Phone, Mail, Star } from "lucide-react";
+import { MapPin, Phone, Mail, Star, ExternalLink } from "lucide-react";
+
+const MAPS_URL = "https://www.google.com/maps?q=42.628374,21.178652";
 
 interface Testimonial {
   quote: string;
@@ -37,17 +39,45 @@ export const MapLocationSection: React.FC = () => {
     <section id="map-location" className="w-full bg-slate-50 text-slate-900 py-16 px-6 md:px-12 border-t border-slate-200">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         
-        {/* Left Side: Interactive Google Map */}
-        <div className="lg:col-span-7 rounded-[24px] overflow-hidden shadow-xl border border-slate-200 min-h-[400px] lg:min-h-[500px] relative group bg-white">
-          <iframe
-            title="Step Sport Center Location Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2935.1581452654316!2d21.178652315465227!3d42.62837377916962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549dcd67b2d29f%3A0xbcaef2be50be0689!2sSTEP%20Sport%20Center!5e0!3m2!1sen!2s!4v1650000000000!5m2!1sen!2s"
-            className="absolute inset-0 w-full h-full border-0"
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
+        {/* Left Side: Map Card linking out to the real Step Sport Center location */}
+        <a
+          href={MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="lg:col-span-7 rounded-[24px] overflow-hidden shadow-xl border border-slate-200 min-h-[400px] lg:min-h-[500px] relative group bg-gradient-to-br from-sky-100 via-sky-50 to-blue-100 block"
+        >
+          {/* Decorative street-grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(14,165,233,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(14,165,233,0.08)_1px,transparent_1px)] bg-[size:3rem_3rem]" />
+          <svg className="absolute inset-0 w-full h-full opacity-30" preserveAspectRatio="none">
+            <line x1="0%" y1="30%" x2="100%" y2="45%" stroke="#0ea5e9" strokeWidth="3" />
+            <line x1="20%" y1="0%" x2="35%" y2="100%" stroke="#0ea5e9" strokeWidth="3" />
+            <line x1="0%" y1="75%" x2="100%" y2="65%" stroke="#38bdf8" strokeWidth="2" />
+          </svg>
+
+          {/* Center pin + info */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8 text-center">
+            <div className="relative flex items-center justify-center">
+              <span className="absolute w-16 h-16 rounded-full bg-sky-400/30 animate-ping" />
+              <span className="relative flex items-center justify-center w-14 h-14 rounded-full bg-sky-500 shadow-lg shadow-sky-500/40">
+                <MapPin className="w-7 h-7 text-white" fill="currentColor" />
+              </span>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-black text-blue-950 uppercase tracking-tight">
+                Step Sport Center
+              </h3>
+              <p className="font-ui text-sm text-slate-600 mt-1">
+                Veternik, M25-2, Prishtina, Kosovo
+              </p>
+            </div>
+
+            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-sky-500 group-hover:bg-sky-600 text-white font-ui font-bold text-sm shadow-lg transition-all duration-300 group-active:scale-95">
+              Open in Google Maps
+              <ExternalLink className="w-4 h-4" />
+            </span>
+          </div>
+        </a>
 
         {/* Right Side: Step Sport Center Info & Testimonials Carousel */}
         <div className="lg:col-span-5 flex flex-col justify-center items-center text-center px-4 md:px-8 py-6">

@@ -167,7 +167,7 @@ export const CoachesPage: React.FC = () => {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       {/* Name overlay, revealed only on hover */}
-                      <div className="absolute inset-0 bg-slate-950/80 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-sky-600/95 via-sky-500/50 to-transparent flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span className="text-base sm:text-lg font-extrabold text-white uppercase tracking-tight text-center px-2">
                           {coach.name}
                         </span>
