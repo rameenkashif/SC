@@ -1,8 +1,10 @@
 import React from "react";
 import { motion } from "motion/react";
 import kidSwimmerImg from "../assets/images/kid_swimmer_about_us_1784607577316.jpg";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export const AboutUsSection: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <section
       id="about-us"
@@ -50,15 +52,15 @@ export const AboutUsSection: React.FC = () => {
           className="flex flex-col text-left"
         >
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-6 uppercase">
-            About <span className="text-sky-400">Us</span>
+            {t("aboutUs.headingPart1")} <span className="text-sky-400">{t("aboutUs.headingPart2")}</span>
           </h2>
 
           <div className="font-ui space-y-5 text-base sm:text-lg text-gray-200 font-light leading-relaxed">
             <p>
-              <strong className="text-sky-300 font-semibold">Step Sport Center</strong> is a respected name in the country, region, and beyond, with sports activities on the local and international stage. With the creation of Step Sport Center, opportunities for an active and healthy life are offered for all age groups.
+              <strong className="text-sky-300 font-semibold">{t("aboutUs.paragraph1Strong")}</strong> {t("aboutUs.paragraph1Rest")}
             </p>
             <p>
-              Through activities in swimming pools and gyms, we aim for Step Sport Center to become synonymous with health, sports, and recreation.
+              {t("aboutUs.paragraph2")}
             </p>
             <div className="pt-2">
               <a
@@ -66,7 +68,7 @@ export const AboutUsSection: React.FC = () => {
                 onClick={() => (window.location.hash = "#about-us-page")}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-semibold text-sm transition-all shadow-lg active:scale-95"
               >
-                Read Full History & Facilities
+                {t("aboutUs.cta")}
               </a>
             </div>
           </div>

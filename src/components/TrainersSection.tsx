@@ -6,8 +6,10 @@ import besartImg from "../assets/images/coaches/besart_shala.jpg";
 import hanaImg from "../assets/images/coaches/hana_fejzullahu.jpg";
 import elonaImg from "../assets/images/coaches/elona_toverlani.jpg";
 import erjonBuzhalaImg from "../assets/images/coaches/erjon_buzhala.jpg";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export const TrainersSection: React.FC = () => {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -42,10 +44,10 @@ export const TrainersSection: React.FC = () => {
           className="max-w-4xl mx-auto px-6 flex flex-col items-center justify-center"
         >
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-blue-950 uppercase mb-6">
-            Meet Our <span className="text-sky-600">Trainers</span>
+            {t("trainers.headingPart1")} <span className="text-sky-600">{t("trainers.headingPart2")}</span>
           </h2>
           <p className="font-ui text-base sm:text-lg text-slate-700 font-light leading-relaxed max-w-2xl mx-auto">
-            Our trainers are certified and experienced in their field. They are here to help you achieve your goals.
+            {t("trainers.subtitle")}
           </p>
         </motion.div>
       </div>
@@ -145,7 +147,7 @@ export const TrainersSection: React.FC = () => {
           href="#coaches-page"
           className="font-ui px-8 py-3.5 rounded-full text-sm font-semibold bg-sky-500 hover:bg-sky-600 text-white transition-all duration-300 shadow-[0_4px_20px_rgba(14,165,233,0.3)] hover:shadow-[0_4px_25px_rgba(14,165,233,0.5)] cursor-pointer"
         >
-          Read More
+          {t("trainers.readMore")}
         </motion.a>
       </div>
     </section>

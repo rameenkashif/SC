@@ -1,30 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MapPin, Phone, Mail, Star, ExternalLink } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const MAPS_URL = "https://www.google.com/maps?q=42.628374,21.178652";
 
 interface Testimonial {
-  quote: string;
+  quoteKey: string;
   author: string;
 }
 
 const testimonials: Testimonial[] = [
-  {
-    quote: "I love this sport center! The staff is friendly and the environment is perfect for both beginners and professionals.",
-    author: "Jonida Xhelili",
-  },
-  {
-    quote: "The best swimming pool in Kosovo. Clean water, professional coaches, and amazing energy!",
-    author: "Arben Krasniqi",
-  },
-  {
-    quote: "Excellent programs for kids. My son learned to swim in just a few weeks. Highly recommended!",
-    author: "Valbona Gashi",
-  },
+  { quoteKey: "testimonial.1.quote", author: "Jonida Xhelili" },
+  { quoteKey: "testimonial.2.quote", author: "Arben Krasniqi" },
+  { quoteKey: "testimonial.3.quote", author: "Valbona Gashi" },
 ];
 
 export const MapLocationSection: React.FC = () => {
+  const { t } = useLanguage();
   const [activeIdx, setActiveIdx] = useState(0);
 
   // Auto-slide testimonials
@@ -65,15 +58,15 @@ export const MapLocationSection: React.FC = () => {
 
             <div>
               <h3 className="text-xl font-black text-blue-950 uppercase tracking-tight">
-                Step Sport Center
+                {t("map.title")}
               </h3>
               <p className="font-ui text-sm text-slate-600 mt-1">
-                Veternik, M25-2, Prishtina, Kosovo
+                {t("map.address")}
               </p>
             </div>
 
             <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-sky-500 group-hover:bg-sky-600 text-white font-ui font-bold text-sm shadow-lg transition-all duration-300 group-active:scale-95">
-              Open in Google Maps
+              {t("map.openInMaps")}
               <ExternalLink className="w-4 h-4" />
             </span>
           </div>
@@ -83,22 +76,22 @@ export const MapLocationSection: React.FC = () => {
         <div className="lg:col-span-5 flex flex-col justify-center items-center text-center px-4 md:px-8 py-6">
           {/* Main Title */}
           <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 mb-6 font-sans">
-            Step Sport Center
+            {t("map.title")}
           </h2>
 
           {/* Contact details */}
           <div className="font-ui space-y-3 mb-10 text-slate-700 font-medium text-sm md:text-base">
             <div className="flex items-center justify-center gap-2.5">
               <MapPin className="w-5 h-5 text-sky-500 shrink-0" />
-              <span>Address: Veternik, M25-2, Prishtina, Kosovo</span>
+              <span>{t("map.addressLabel")} {t("map.address")}</span>
             </div>
             <div className="flex items-center justify-center gap-2.5">
               <Phone className="w-5 h-5 text-sky-500 shrink-0" />
-              <span>Phone: +383 49 333 934</span>
+              <span>{t("map.phoneLabel")} +383 49 333 934</span>
             </div>
             <div className="flex items-center justify-center gap-2.5">
               <Mail className="w-5 h-5 text-sky-500 shrink-0" />
-              <span>Email: info@step-ks.com</span>
+              <span>{t("map.emailLabel")} info@step-ks.com</span>
             </div>
           </div>
 
@@ -122,7 +115,7 @@ export const MapLocationSection: React.FC = () => {
                   transition={{ duration: 0.4 }}
                   className="font-ui text-slate-600 italic text-sm md:text-base leading-relaxed font-semibold px-2"
                 >
-                  "{testimonials[activeIdx].quote}"
+                  "{t(testimonials[activeIdx].quoteKey)}"
                   <span className="block not-italic text-xs text-slate-400 font-bold uppercase tracking-wider mt-4">
                     - {testimonials[activeIdx].author}
                   </span>

@@ -3,18 +3,11 @@ import { motion, AnimatePresence } from "motion/react";
 import { CheckCircle, Plus } from "lucide-react";
 import olympicPoolImg from "../assets/images/olympic_pool_5lanes_1784711486001.jpg";
 import brightSwimmerBgImg from "../assets/images/bright_swimmer_bg_1784780224088.jpg";
+import { useLanguage } from "../i18n/LanguageContext";
 
 type Category = "individual" | "adults" | "kids-fitness" | "swimming-school" | "group";
 
 const categoryOrder: Category[] = ["individual", "adults", "kids-fitness", "swimming-school", "group"];
-
-const categoryLabels: Record<Category, string> = {
-  individual: "Individual",
-  adults: "Adults",
-  "kids-fitness": "Kids Fitness",
-  "swimming-school": "Swimming School",
-  group: "Group Reservations",
-};
 
 const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -105,6 +98,7 @@ const toggleBtnClass = (active: boolean) =>
 const planCardClass = "rounded-2xl border border-white/90 bg-white/85 backdrop-blur-xl p-5 shadow-lg space-y-4 text-slate-800";
 
 export const RegisterPage: React.FC = () => {
+  const { t } = useLanguage();
   const [category, setCategory] = useState<Category>("individual");
   const [agree, setAgree] = useState(false);
 
@@ -178,18 +172,18 @@ export const RegisterPage: React.FC = () => {
   const handleRegisterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!agree) {
-      alert("You must agree to the Terms of Service.");
+      alert(t("register.alertTerms"));
       return;
     }
     if (category === "group") {
       if (!groupForm.institution || !groupForm.email || !groupForm.phone || !groupForm.responsiblePerson) {
-        alert("Please fill in all required fields.");
+        alert(t("register.alertRequired"));
         return;
       }
     } else {
       const first = members[0];
       if (!first.firstName || !first.lastName || !first.phone || !first.email) {
-        alert("Please fill in all required fields.");
+        alert(t("register.alertRequired"));
         return;
       }
     }
@@ -199,8 +193,8 @@ export const RegisterPage: React.FC = () => {
       setIsSubmitting(false);
       setSuccessMessage(
         category === "group"
-          ? `Your group reservation request has been sent! We'll get back to you at ${groupForm.email}.`
-          : `Registration request submitted for ${categoryLabels[category]}. Welcome to Steps Sport Center!`
+          ? t("register.successGroup", { email: groupForm.email })
+          : t("register.successOther", { category: t(category) })
       );
       setIsSuccess(true);
       setAgree(false);
@@ -243,7 +237,7 @@ export const RegisterPage: React.FC = () => {
               >
                 {/* Page Heading */}
                 <h1 className="text-4xl md:text-5xl font-black tracking-tight uppercase text-slate-900 text-center mb-8">
-                  Register
+                  {t("register.heading")}
                 </h1>
 
                 <motion.form
@@ -256,7 +250,7 @@ export const RegisterPage: React.FC = () => {
                   {/* Category selector */}
                   <div className="flex flex-wrap items-center justify-between gap-4">
                     <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
-                      Choose a Category
+                      {t("register.chooseCategory")}
                     </p>
                     <select
                       value={category}
@@ -265,7 +259,7 @@ export const RegisterPage: React.FC = () => {
                     >
                       {categoryOrder.map((c) => (
                         <option key={c} value={c}>
-                          {categoryLabels[c]}
+                          {t(c)}
                         </option>
                       ))}
                     </select>
@@ -275,13 +269,13 @@ export const RegisterPage: React.FC = () => {
                     {/* LEFT: Your Information */}
                     <div className="space-y-4">
                       <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
-                        Your Information
+                        {t("register.yourInformation")}
                       </h3>
 
                       {category === "group" ? (
                         <>
                           <div>
-                            <label className={labelClass}>Institution</label>
+                            <label className={labelClass}>{t("register.institution")}</label>
                             <input
                               type="text"
                               required
@@ -291,7 +285,7 @@ export const RegisterPage: React.FC = () => {
                             />
                           </div>
                           <div>
-                            <label className={labelClass}>Address</label>
+                            <label className={labelClass}>{t("register.address")}</label>
                             <input
                               type="text"
                               value={groupForm.address}
@@ -300,7 +294,7 @@ export const RegisterPage: React.FC = () => {
                             />
                           </div>
                           <div>
-                            <label className={labelClass}>Email</label>
+                            <label className={labelClass}>{t("register.email")}</label>
                             <input
                               type="email"
                               required
@@ -310,7 +304,7 @@ export const RegisterPage: React.FC = () => {
                             />
                           </div>
                           <div>
-                            <label className={labelClass}>Phone</label>
+                            <label className={labelClass}>{t("register.phone")}</label>
                             <input
                               type="tel"
                               required
@@ -320,7 +314,7 @@ export const RegisterPage: React.FC = () => {
                             />
                           </div>
                           <div>
-                            <label className={labelClass}>Responsible Person</label>
+                            <label className={labelClass}>{t("register.responsiblePerson")}</label>
                             <input
                               type="text"
                               required
@@ -331,7 +325,7 @@ export const RegisterPage: React.FC = () => {
                           </div>
 
                           <div>
-                            <label className={labelClass}>Date</label>
+                            <label className={labelClass}>{t("register.date")}</label>
                             <div className="space-y-2">
                               {groupDates.map((d, idx) => (
                                 <input
@@ -348,12 +342,12 @@ export const RegisterPage: React.FC = () => {
                               onClick={addGroupDate}
                               className="mt-2 w-full h-10 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-sky-700 text-[11px] font-medium uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5"
                             >
-                              <Plus className="w-3.5 h-3.5" /> Add Another Date
+                              <Plus className="w-3.5 h-3.5" /> {t("register.addAnotherDate")}
                             </button>
                           </div>
 
                           <div>
-                            <label className={labelClass}>Time</label>
+                            <label className={labelClass}>{t("register.time")}</label>
                             <input
                               type="time"
                               value={groupForm.time}
@@ -362,7 +356,7 @@ export const RegisterPage: React.FC = () => {
                             />
                           </div>
                           <div>
-                            <label className={labelClass}>Number of People</label>
+                            <label className={labelClass}>{t("register.numberOfPeople")}</label>
                             <input
                               type="number"
                               min={0}
@@ -373,7 +367,7 @@ export const RegisterPage: React.FC = () => {
                             />
                           </div>
                           <div>
-                            <label className={labelClass}>Age</label>
+                            <label className={labelClass}>{t("register.age")}</label>
                             <input
                               type="number"
                               min={0}
@@ -385,7 +379,7 @@ export const RegisterPage: React.FC = () => {
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                             <div>
-                              <label className={labelClass}>Males</label>
+                              <label className={labelClass}>{t("register.males")}</label>
                               <input
                                 type="number"
                                 min={0}
@@ -396,7 +390,7 @@ export const RegisterPage: React.FC = () => {
                               />
                             </div>
                             <div>
-                              <label className={labelClass}>Females</label>
+                              <label className={labelClass}>{t("register.females")}</label>
                               <input
                                 type="number"
                                 min={0}
@@ -408,7 +402,7 @@ export const RegisterPage: React.FC = () => {
                             </div>
                           </div>
                           <div>
-                            <label className={labelClass}>Choose Offer</label>
+                            <label className={labelClass}>{t("register.chooseOffer")}</label>
                             <select
                               value={groupForm.offer}
                               onChange={(e) => setGroupForm({ ...groupForm, offer: e.target.value })}
@@ -416,7 +410,7 @@ export const RegisterPage: React.FC = () => {
                             >
                               {groupOfferOptions.map((o) => (
                                 <option key={o} value={o}>
-                                  {o}
+                                  {t(o)}
                                 </option>
                               ))}
                             </select>
@@ -431,16 +425,16 @@ export const RegisterPage: React.FC = () => {
                             >
                               {idx > 0 && (
                                 <p className="text-[10px] font-semibold uppercase text-sky-700 tracking-wider">
-                                  Member {idx + 1}
+                                  {t("register.member")} {idx + 1}
                                 </p>
                               )}
 
                               <div>
-                                <label className={labelClass}>First Name</label>
+                                <label className={labelClass}>{t("register.firstName")}</label>
                                 <input
                                   type="text"
                                   required={idx === 0}
-                                  placeholder="Enter your first name"
+                                  placeholder={t("register.firstNamePlaceholder")}
                                   value={member.firstName}
                                   onChange={(e) => updateMember(idx, { firstName: e.target.value })}
                                   className={inputClass}
@@ -449,10 +443,10 @@ export const RegisterPage: React.FC = () => {
 
                               {category === "swimming-school" && (
                                 <div>
-                                  <label className={labelClass}>Parent's Name</label>
+                                  <label className={labelClass}>{t("register.parentsName")}</label>
                                   <input
                                     type="text"
-                                    placeholder="Enter parent's name"
+                                    placeholder={t("register.parentsNamePlaceholder")}
                                     value={member.parentName}
                                     onChange={(e) => updateMember(idx, { parentName: e.target.value })}
                                     className={inputClass}
@@ -461,11 +455,11 @@ export const RegisterPage: React.FC = () => {
                               )}
 
                               <div>
-                                <label className={labelClass}>Last Name</label>
+                                <label className={labelClass}>{t("register.lastName")}</label>
                                 <input
                                   type="text"
                                   required={idx === 0}
-                                  placeholder="Enter your last name"
+                                  placeholder={t("register.lastNamePlaceholder")}
                                   value={member.lastName}
                                   onChange={(e) => updateMember(idx, { lastName: e.target.value })}
                                   className={inputClass}
@@ -473,7 +467,7 @@ export const RegisterPage: React.FC = () => {
                               </div>
 
                               <div>
-                                <label className={labelClass}>Date of Birth</label>
+                                <label className={labelClass}>{t("register.dob")}</label>
                                 <input
                                   type="date"
                                   value={member.dob}
@@ -484,7 +478,7 @@ export const RegisterPage: React.FC = () => {
 
                               {category === "adults" && (
                                 <div>
-                                  <label className={labelClass}>Age</label>
+                                  <label className={labelClass}>{t("register.age")}</label>
                                   <input
                                     type="number"
                                     min={0}
@@ -498,7 +492,7 @@ export const RegisterPage: React.FC = () => {
 
                               {(category === "kids-fitness" || category === "swimming-school") && (
                                 <div>
-                                  <label className={labelClass}>Child Age</label>
+                                  <label className={labelClass}>{t("register.childAge")}</label>
                                   <input
                                     type="number"
                                     min={0}
@@ -511,10 +505,10 @@ export const RegisterPage: React.FC = () => {
                               )}
 
                               <div>
-                                <label className={labelClass}>Address</label>
+                                <label className={labelClass}>{t("register.address")}</label>
                                 <input
                                   type="text"
-                                  placeholder="Enter your address"
+                                  placeholder={t("register.addressPlaceholder")}
                                   value={member.address}
                                   onChange={(e) => updateMember(idx, { address: e.target.value })}
                                   className={inputClass}
@@ -522,11 +516,11 @@ export const RegisterPage: React.FC = () => {
                               </div>
 
                               <div>
-                                <label className={labelClass}>Phone</label>
+                                <label className={labelClass}>{t("register.phone")}</label>
                                 <input
                                   type="tel"
                                   required={idx === 0}
-                                  placeholder="+383 XX XXX XXX"
+                                  placeholder={t("register.phonePlaceholder")}
                                   value={member.phone}
                                   onChange={(e) => updateMember(idx, { phone: e.target.value })}
                                   className={inputClass}
@@ -534,11 +528,11 @@ export const RegisterPage: React.FC = () => {
                               </div>
 
                               <div>
-                                <label className={labelClass}>Email</label>
+                                <label className={labelClass}>{t("register.email")}</label>
                                 <input
                                   type="email"
                                   required={idx === 0}
-                                  placeholder="example@email.com"
+                                  placeholder={t("register.emailPlaceholder")}
                                   value={member.email}
                                   onChange={(e) => updateMember(idx, { email: e.target.value })}
                                   className={inputClass}
@@ -547,7 +541,7 @@ export const RegisterPage: React.FC = () => {
 
                               {(category === "individual" || category === "swimming-school") && (
                                 <div className="pt-2 border-t border-slate-200">
-                                  <label className={labelClass}>Swimming Skills</label>
+                                  <label className={labelClass}>{t("register.swimmingSkills")}</label>
                                   <div className="space-y-2">
                                     {swimmingSkillOptions.map((skill) => (
                                       <label
@@ -561,7 +555,7 @@ export const RegisterPage: React.FC = () => {
                                           onChange={() => updateMember(idx, { swimmingSkill: skill })}
                                           className="w-4 h-4 border-slate-300 text-sky-500 focus:ring-sky-500 bg-white"
                                         />
-                                        {skill}
+                                        {t(skill)}
                                       </label>
                                     ))}
                                   </div>
@@ -569,31 +563,31 @@ export const RegisterPage: React.FC = () => {
                               )}
 
                               <div className="pt-2 border-t border-slate-200">
-                                <label className={labelClass}>Health Problems</label>
+                                <label className={labelClass}>{t("register.healthProblems")}</label>
                                 <div className="flex gap-3">
                                   <button
                                     type="button"
                                     onClick={() => updateMember(idx, { healthProblem: "yes" })}
                                     className={toggleBtnClass(member.healthProblem === "yes")}
                                   >
-                                    Yes
+                                    {t("register.yes")}
                                   </button>
                                   <button
                                     type="button"
                                     onClick={() => updateMember(idx, { healthProblem: "no" })}
                                     className={toggleBtnClass(member.healthProblem === "no")}
                                   >
-                                    No
+                                    {t("register.no")}
                                   </button>
                                 </div>
                                 {member.healthProblem === "yes" && (
                                   <div className="mt-2">
                                     <p className="text-[10px] italic text-slate-500 mb-1">
-                                      Please describe health problems
+                                      {t("register.describeHealthProblems")}
                                     </p>
                                     <input
                                       type="text"
-                                      placeholder="Describe health problems"
+                                      placeholder={t("register.describeHealthProblemsPlaceholder")}
                                       value={member.healthDescription}
                                       onChange={(e) => updateMember(idx, { healthDescription: e.target.value })}
                                       className={inputClass}
@@ -610,7 +604,7 @@ export const RegisterPage: React.FC = () => {
                               onClick={addMember}
                               className="w-full h-11 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-sky-700 text-[11px] font-medium uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5"
                             >
-                              Add Member <Plus className="w-3.5 h-3.5" />
+                              {t("register.addMember")} <Plus className="w-3.5 h-3.5" />
                             </button>
                           )}
                         </>
@@ -622,7 +616,7 @@ export const RegisterPage: React.FC = () => {
                       {category === "group" && (
                         <div className="rounded-3xl p-8 bg-gradient-to-br from-sky-500 to-blue-600 text-white text-center shadow-xl">
                           <p className="text-sm font-medium uppercase tracking-widest opacity-90 mb-2">
-                            Total Amount
+                            {t("register.totalAmount")}
                           </p>
                           <p className="text-4xl font-black">{formatPrice(groupTotal)}</p>
                         </div>
@@ -631,11 +625,11 @@ export const RegisterPage: React.FC = () => {
                       {category === "adults" && (
                         <>
                           <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
-                            Step Adults
+                            {t("register.stepAdults")}
                           </h3>
                           <div className={planCardClass}>
                             <div>
-                              <label className={labelClass}>Plan</label>
+                              <label className={labelClass}>{t("register.plan")}</label>
                               <select
                                 value={adultsPlan.frequency}
                                 onChange={(e) =>
@@ -645,13 +639,13 @@ export const RegisterPage: React.FC = () => {
                               >
                                 {adultsFrequencyOptions.map((f) => (
                                   <option key={f} value={f}>
-                                    {f}
+                                    {t(f)}
                                   </option>
                                 ))}
                               </select>
                             </div>
                             <div>
-                              <label className={labelClass}>Duration</label>
+                              <label className={labelClass}>{t("register.duration")}</label>
                               <select
                                 value={adultsPlan.duration}
                                 onChange={(e) => setAdultsPlan({ ...adultsPlan, duration: e.target.value })}
@@ -659,14 +653,14 @@ export const RegisterPage: React.FC = () => {
                               >
                                 {durationOptions.map((d) => (
                                   <option key={d} value={d}>
-                                    {d}
+                                    {t(d)}
                                   </option>
                                 ))}
                               </select>
                             </div>
                             <div>
                               <p className="text-[10px] font-semibold text-sky-700 uppercase tracking-wide mb-2">
-                                Choose {adultsMaxDays} Day{adultsMaxDays === 1 ? "" : "s"}
+                                {t(adultsMaxDays === 1 ? "register.chooseDays" : "register.chooseDaysPlural", { n: adultsMaxDays })}
                               </p>
                               <div className="grid grid-cols-2 gap-2">
                                 {daysOfWeek.map((day) => (
@@ -681,14 +675,14 @@ export const RegisterPage: React.FC = () => {
                                     }
                                     className={toggleBtnClass(adultsPlan.days.includes(day))}
                                   >
-                                    {day}
+                                    {t(day)}
                                   </button>
                                 ))}
                               </div>
                             </div>
                             <div className="flex items-center justify-between pt-2 border-t border-slate-200">
                               <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
-                                Price
+                                {t("register.price")}
                               </span>
                               <span className="text-2xl font-black text-slate-900">{formatPrice(adultsPrice)}</span>
                             </div>
@@ -696,7 +690,7 @@ export const RegisterPage: React.FC = () => {
                               type="button"
                               className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                             >
-                              Choose Plan
+                              {t("register.choosePlan")}
                             </button>
                           </div>
                         </>
@@ -705,11 +699,11 @@ export const RegisterPage: React.FC = () => {
                       {category === "kids-fitness" && (
                         <>
                           <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
-                            Kids Fitness
+                            {t("register.kidsFitness")}
                           </h3>
                           <div className={planCardClass}>
                             <div>
-                              <label className={labelClass}>Plan</label>
+                              <label className={labelClass}>{t("register.plan")}</label>
                               <select
                                 value={kidsPlan.frequency}
                                 onChange={(e) => setKidsPlan({ ...kidsPlan, frequency: e.target.value, days: [] })}
@@ -717,28 +711,28 @@ export const RegisterPage: React.FC = () => {
                               >
                                 {kidsFrequencyOptions.map((f) => (
                                   <option key={f} value={f}>
-                                    {f}
+                                    {t(f)}
                                   </option>
                                 ))}
                               </select>
                             </div>
                             <div>
-                              <label className={labelClass}>Time</label>
+                              <label className={labelClass}>{t("register.time_")}</label>
                               <select
                                 value={kidsPlan.time}
                                 onChange={(e) => setKidsPlan({ ...kidsPlan, time: e.target.value })}
                                 className={selectClass}
                               >
-                                {kidsTimeOptions.map((t) => (
-                                  <option key={t} value={t}>
-                                    Time: {t}
+                                {kidsTimeOptions.map((timeOpt) => (
+                                  <option key={timeOpt} value={timeOpt}>
+                                    {t("register.time_")}: {timeOpt}
                                   </option>
                                 ))}
                               </select>
                             </div>
                             <div>
                               <p className="text-[10px] font-semibold text-sky-700 uppercase tracking-wide mb-2">
-                                Schedule
+                                {t("register.schedule")}
                               </p>
                               <div className="grid grid-cols-2 gap-2">
                                 {daysOfWeek.map((day) => (
@@ -750,17 +744,17 @@ export const RegisterPage: React.FC = () => {
                                     }
                                     className={toggleBtnClass(kidsPlan.days.includes(day))}
                                   >
-                                    {day}
+                                    {t(day)}
                                   </button>
                                 ))}
                               </div>
                               <p className="text-[10px] italic text-slate-500 mt-2">
-                                Choose {kidsMaxDays} day{kidsMaxDays === 1 ? "" : "s"} of the week
+                                {t(kidsMaxDays === 1 ? "register.chooseDaysOfWeek" : "register.chooseDaysOfWeekPlural", { n: kidsMaxDays })}
                               </p>
                             </div>
                             <div className="flex items-center justify-between pt-2 border-t border-slate-200">
                               <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
-                                Price
+                                {t("register.price")}
                               </span>
                               <span className="text-2xl font-black text-slate-900">{formatPrice(kidsPrice)}</span>
                             </div>
@@ -768,7 +762,7 @@ export const RegisterPage: React.FC = () => {
                               type="button"
                               className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                             >
-                              Choose Plan
+                              {t("register.choosePlan")}
                             </button>
                           </div>
                         </>
@@ -777,17 +771,17 @@ export const RegisterPage: React.FC = () => {
                       {category === "swimming-school" && (
                         <>
                           <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
-                            Swimming School
+                            {t("register.swimmingSchool")}
                           </h3>
                           {swimCards.map((card, idx) => {
                             const price = swimEntriesPriceMap[card.entries] * (1 - card.discount);
                             return (
                               <div key={idx} className={planCardClass}>
                                 <p className="text-[10px] font-bold text-sky-700 uppercase tracking-wide">
-                                  {card.label}
+                                  {t(card.label)}
                                 </p>
                                 <div>
-                                  <label className={labelClass}>Duration</label>
+                                  <label className={labelClass}>{t("register.duration")}</label>
                                   <select
                                     value={card.duration}
                                     onChange={(e) => updateSwimCard(idx, { duration: e.target.value })}
@@ -795,13 +789,13 @@ export const RegisterPage: React.FC = () => {
                                   >
                                     {durationOptions.map((d) => (
                                       <option key={d} value={d}>
-                                        {d}
+                                        {t(d)}
                                       </option>
                                     ))}
                                   </select>
                                 </div>
                                 <div>
-                                  <label className={labelClass}>Entries</label>
+                                  <label className={labelClass}>{t("register.entries")}</label>
                                   <select
                                     value={card.entries}
                                     onChange={(e) => updateSwimCard(idx, { entries: e.target.value })}
@@ -809,14 +803,14 @@ export const RegisterPage: React.FC = () => {
                                   >
                                     {swimEntryOptions.map((o) => (
                                       <option key={o} value={o}>
-                                        {o}
+                                        {t(o)}
                                       </option>
                                     ))}
                                   </select>
                                 </div>
                                 {card.level !== undefined && (
                                   <div>
-                                    <label className={labelClass}>Level</label>
+                                    <label className={labelClass}>{t("register.level")}</label>
                                     <select
                                       value={card.level}
                                       onChange={(e) => updateSwimCard(idx, { level: e.target.value })}
@@ -824,18 +818,18 @@ export const RegisterPage: React.FC = () => {
                                     >
                                       {swimLevelOptions.map((l) => (
                                         <option key={l} value={l}>
-                                          {l}
+                                          {t(l)}
                                         </option>
                                       ))}
                                     </select>
                                   </div>
                                 )}
                                 <p className="text-[11px] text-slate-600 font-normal">
-                                  Entries: <span className="font-semibold text-slate-800">{card.entries}</span>
+                                  {t("register.entriesLabel")} <span className="font-semibold text-slate-800">{t(card.entries)}</span>
                                 </p>
                                 <div className="flex items-center justify-between pt-2 border-t border-slate-200">
                                   <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
-                                    Price
+                                    {t("register.price")}
                                   </span>
                                   <span className="text-2xl font-black text-slate-900">{formatPrice(price)}</span>
                                 </div>
@@ -843,7 +837,7 @@ export const RegisterPage: React.FC = () => {
                                   type="button"
                                   className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                                 >
-                                  Choose Plan
+                                  {t("register.choosePlan")}
                                 </button>
                               </div>
                             );
@@ -854,13 +848,13 @@ export const RegisterPage: React.FC = () => {
                       {category === "individual" && (
                         <>
                           <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
-                            Individual
+                            {t("register.individualHeading")}
                           </h3>
 
                           {/* Card 1: build your own plan */}
                           <div className={planCardClass}>
                             <div>
-                              <label className={labelClass}>Duration</label>
+                              <label className={labelClass}>{t("register.duration")}</label>
                               <select
                                 value={individualCards[0].duration}
                                 onChange={(e) => updateIndividualCard(0, { duration: e.target.value })}
@@ -868,22 +862,22 @@ export const RegisterPage: React.FC = () => {
                               >
                                 {durationOptions.map((d) => (
                                   <option key={d} value={d}>
-                                    {d}
+                                    {t(d)}
                                   </option>
                                 ))}
                               </select>
                             </div>
                             <div>
-                              <label className={labelClass}>Option</label>
+                              <label className={labelClass}>{t("register.option")}</label>
                               <select
                                 value={individualCards[0].entries}
                                 onChange={(e) => updateIndividualCard(0, { entries: e.target.value })}
                                 className={selectClass}
                               >
-                                <option value="">Choose an option</option>
+                                <option value="">{t("register.chooseAnOption")}</option>
                                 {individualEntryOptions.map((o) => (
                                   <option key={o} value={o}>
-                                    {o}
+                                    {t(o)}
                                   </option>
                                 ))}
                               </select>
@@ -892,7 +886,7 @@ export const RegisterPage: React.FC = () => {
                               <>
                                 <div className="flex items-center justify-between pt-2 border-t border-slate-200">
                                   <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
-                                    Price
+                                    {t("register.price")}
                                   </span>
                                   <span className="text-2xl font-black text-slate-900">
                                     {formatPrice(individualEntriesPriceMap[individualCards[0].entries])}
@@ -902,12 +896,12 @@ export const RegisterPage: React.FC = () => {
                                   type="button"
                                   className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                                 >
-                                  Choose Plan
+                                  {t("register.choosePlan")}
                                 </button>
                               </>
                             ) : (
                               <p className="text-[11px] italic text-slate-500 font-normal">
-                                Choose a plan to see the price
+                                {t("register.choosePlanToSeePrice")}
                               </p>
                             )}
                           </div>
@@ -915,7 +909,7 @@ export const RegisterPage: React.FC = () => {
                           {/* Card 2: fixed unlimited plan */}
                           <div className={planCardClass}>
                             <div>
-                              <label className={labelClass}>Duration</label>
+                              <label className={labelClass}>{t("register.duration")}</label>
                               <select
                                 value={individualCards[1].duration}
                                 onChange={(e) => updateIndividualCard(1, { duration: e.target.value })}
@@ -923,17 +917,17 @@ export const RegisterPage: React.FC = () => {
                               >
                                 {durationOptions.map((d) => (
                                   <option key={d} value={d}>
-                                    {d}
+                                    {t(d)}
                                   </option>
                                 ))}
                               </select>
                             </div>
                             <p className="text-[11px] text-slate-600 font-normal">
-                              Entries: <span className="font-semibold text-slate-800">unlimited</span>
+                              {t("register.entriesLabel")} <span className="font-semibold text-slate-800">{t("register.entriesUnlimited")}</span>
                             </p>
                             <div className="flex items-center justify-between pt-2 border-t border-slate-200">
                               <span className="text-[10px] font-medium uppercase text-slate-600 tracking-wider">
-                                Price
+                                {t("register.price")}
                               </span>
                               <span className="text-2xl font-black text-slate-900">
                                 {formatPrice(individualEntriesPriceMap["Unlimited Entries"])}
@@ -943,7 +937,7 @@ export const RegisterPage: React.FC = () => {
                               type="button"
                               className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
                             >
-                              Choose Plan
+                              {t("register.choosePlan")}
                             </button>
                           </div>
                         </>
@@ -962,9 +956,9 @@ export const RegisterPage: React.FC = () => {
                         className="w-4 h-4 rounded border-slate-300 bg-white text-sky-500 focus:ring-sky-500"
                       />
                       <label htmlFor="agree-checkbox" className="text-[11px] text-slate-600 font-normal select-none">
-                        I agree to the{" "}
+                        {t("register.agreeToThe")}{" "}
                         <a href="#about-us" className="text-sky-600 hover:underline font-medium">
-                          terms and conditions
+                          {t("register.termsAndConditions")}
                         </a>
                       </label>
                     </div>
@@ -977,9 +971,9 @@ export const RegisterPage: React.FC = () => {
                       {isSubmitting ? (
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       ) : category === "group" ? (
-                        "Send Request"
+                        t("register.sendRequest")
                       ) : (
-                        "Register"
+                        t("register.heading")
                       )}
                     </button>
                   </div>
@@ -999,7 +993,7 @@ export const RegisterPage: React.FC = () => {
                 </div>
 
                 <h2 className="text-2xl font-black uppercase tracking-tight text-slate-900 mb-3">
-                  Success!
+                  {t("register.success")}
                 </h2>
 
                 <p className="font-ui text-sm text-slate-600 max-w-sm mb-10 leading-relaxed font-normal">
@@ -1014,13 +1008,13 @@ export const RegisterPage: React.FC = () => {
                     }}
                     className="font-ui w-full h-12 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 text-xs font-medium tracking-widest uppercase transition-all duration-300 active:scale-95"
                   >
-                    Go Back to Form
+                    {t("register.goBackToForm")}
                   </button>
                   <a
                     href="#home"
                     className="font-ui w-full h-12 rounded-full bg-sky-500 hover:bg-sky-600 text-white text-xs font-black tracking-wider uppercase shadow-md shadow-sky-500/20 transition-all duration-300 flex items-center justify-center active:scale-95"
                   >
-                    Return to Homepage
+                    {t("register.returnToHomepage")}
                   </a>
                 </div>
               </motion.div>

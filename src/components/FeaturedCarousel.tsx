@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { FeaturedCard } from "../types";
+import { useLanguage } from "../i18n/LanguageContext";
 
 // Import generated images
 import stepIndividualImg from "../assets/images/step_individual_1784607303489.jpg";
@@ -14,26 +15,25 @@ const cardImages: Record<number, string> = {
 };
 
 export const FeaturedCarousel: React.FC = () => {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   const cards: FeaturedCard[] = [
     {
       id: 1,
-      title: "Step Individual",
-      description:
-        "For free swimming. In our indoor pools with ideal temperatures, you can swim year-round, regardless of the weather. We have three pools to choose from, making us unique in Kosovo.",
+      title: t("featured.card1.title"),
+      description: t("featured.card1.description"),
     },
     {
       id: 2,
-      title: "Swimming School",
-      description:
-        "The 'STEP' swimming school offers swimming lessons for all age groups and abilities. With a team dedicated to its members, the school's program is overseen by professionals in the relevant field.",
+      title: t("featured.card2.title"),
+      description: t("featured.card2.description"),
     },
     {
       id: 3,
-      title: "Step Group",
-      description: "Group membership is a special form of membership.",
+      title: t("featured.card3.title"),
+      description: t("featured.card3.description"),
     },
   ];
 
@@ -64,7 +64,7 @@ export const FeaturedCarousel: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-6xl font-black tracking-tight text-blue-950 uppercase"
         >
-          Artistic Pool & Coaching
+          {t("featured.heading")}
         </motion.h2>
       </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Globe, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface HeaderProps {
   isVisible: boolean; // True when header is active
@@ -9,15 +10,15 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
+  const { lang, setLang, t } = useLanguage();
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("EN");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about-us-page" },
-    { name: "Coaches", href: "#coaches-page" },
-    { name: "Register", href: "#register-page" },
+    { key: "nav.home", href: "#home" },
+    { key: "nav.aboutUs", href: "#about-us-page" },
+    { key: "nav.coaches", href: "#coaches-page" },
+    { key: "nav.register", href: "#register-page" },
   ];
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -59,14 +60,14 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
 
               return (
                 <a
-                  key={item.name}
+                  key={item.key}
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
                   className={`text-xs font-extrabold tracking-widest hover:text-sky-300 transition-all relative py-1.5 ${
                     isActive ? "text-sky-400" : "text-gray-300 hover:text-white"
                   }`}
                 >
-                  {item.name}
+                  {t(item.key)}
                   {isActive && (
                     <motion.div
                       layoutId="activeIndicator"
@@ -86,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
               onClick={(e) => handleScrollTo(e, "#signin-page")}
               className="px-5 py-2 rounded-full border border-white/70 text-xs font-black tracking-wider text-white hover:bg-white/10 transition-all duration-300 active:scale-95"
             >
-              Sign In
+              {t("nav.signIn")}
             </a>
 
             {/* Language Selector */}
@@ -97,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                 aria-label="Change language"
               >
                 <Globe className="w-4 h-4 text-sky-400" />
-                <span className="text-xs font-bold">{currentLang}</span>
+                <span className="text-xs font-bold">{lang.toUpperCase()}</span>
               </button>
 
               <AnimatePresence>
@@ -108,18 +109,18 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     className="absolute right-0 mt-2 py-2 w-28 rounded-xl bg-slate-900 border border-white/15 shadow-2xl overflow-hidden z-50 text-xs text-left text-white backdrop-blur-xl"
                   >
-                    {["EN", "SQ"].map((lang) => (
+                    {(["en", "sq"] as const).map((code) => (
                       <button
-                        key={lang}
+                        key={code}
                         onClick={() => {
-                          setCurrentLang(lang);
+                          setLang(code);
                           setLangOpen(false);
                         }}
                         className={`w-full px-4 py-2 hover:bg-sky-950/60 text-left font-bold transition-colors ${
-                          currentLang === lang ? "text-sky-400 bg-sky-950/40" : "text-gray-300"
+                          lang === code ? "text-sky-400 bg-sky-950/40" : "text-gray-300"
                         }`}
                       >
-                        {lang === "EN" ? "English" : "Shqip"}
+                        {code === "en" ? "English" : "Shqip"}
                       </button>
                     ))}
                   </motion.div>
@@ -147,12 +148,12 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
               >
                 {navItems.map((item) => (
                   <a
-                    key={item.name}
+                    key={item.key}
                     href={item.href}
                     onClick={(e) => handleScrollTo(e, item.href)}
                     className="text-sm font-extrabold tracking-widest text-gray-200 hover:text-sky-400 transition-colors border-b border-white/5 pb-2"
                   >
-                    {item.name}
+                    {t(item.key)}
                   </a>
                 ))}
                 <div className="flex justify-between items-center mt-2 pt-2 border-t border-white/10">
@@ -161,20 +162,20 @@ export const Header: React.FC<HeaderProps> = ({ isVisible, activeSection }) => {
                     onClick={(e) => handleScrollTo(e, "#signin-page")}
                     className="px-4 py-1.5 rounded-full border border-white/70 text-xs font-black tracking-wider text-white hover:bg-white/10 transition-colors"
                   >
-                    Sign In
+                    {t("nav.signIn")}
                   </a>
 
                   {/* Mobile language picker */}
                   <div className="flex gap-2">
-                    {["EN", "SQ"].map((lang) => (
+                    {(["en", "sq"] as const).map((code) => (
                       <button
-                        key={lang}
-                        onClick={() => setCurrentLang(lang)}
+                        key={code}
+                        onClick={() => setLang(code)}
                         className={`text-xs px-2.5 py-1 rounded-md border font-bold ${
-                          currentLang === lang ? "bg-sky-500/20 text-sky-400 border-sky-400/40" : "border-white/15 text-gray-400"
+                          lang === code ? "bg-sky-500/20 text-sky-400 border-sky-400/40" : "border-white/15 text-gray-400"
                         }`}
                       >
-                        {lang}
+                        {code.toUpperCase()}
                       </button>
                     ))}
                   </div>

@@ -17,8 +17,10 @@ import { AboutUsPage } from "./components/AboutUsPage";
 import { motion } from "motion/react";
 import { ArrowUp, Instagram, Facebook } from "lucide-react";
 import { Logo } from "./components/Logo";
+import { useLanguage } from "./i18n/LanguageContext";
 
 export default function App() {
+  const { t } = useLanguage();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -216,13 +218,13 @@ export default function App() {
           </div>
 
           <p className="font-sans font-medium text-gray-400">
-            &copy; {new Date().getFullYear()} stepsportcenter.com. All rights reserved.
+            &copy; {new Date().getFullYear()} stepsportcenter.com. {t("footer.rights")}
           </p>
 
           <div className="flex gap-4 font-sans font-bold">
-            <a href="#about-us" className="hover:text-sky-400 transition-colors">Privacy Policy</a>
+            <a href="#about-us" className="hover:text-sky-400 transition-colors">{t("footer.privacyPolicy")}</a>
             <span>•</span>
-            <a href="#register-page" className="hover:text-sky-400 transition-colors">Terms of Service</a>
+            <a href="#register-page" className="hover:text-sky-400 transition-colors">{t("footer.termsOfService")}</a>
           </div>
         </div>
       </footer>

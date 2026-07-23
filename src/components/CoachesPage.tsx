@@ -12,6 +12,7 @@ import korabiImg from "../assets/images/coaches/korabi.jpg";
 import rinaImg from "../assets/images/coaches/rina_zuka.jpg";
 import mendimImg from "../assets/images/coaches/mendim_samadraxha.jpg";
 import erjonShurdhajImg from "../assets/images/coaches/erjon_shurdhaj.jpg";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface TeamCoach {
   id: number;
@@ -32,6 +33,7 @@ const teamCoaches: TeamCoach[] = [
 ];
 
 export const CoachesPage: React.FC = () => {
+  const { t } = useLanguage();
   const infiniteCoaches = [...teamCoaches, ...teamCoaches, ...teamCoaches];
 
   return (
@@ -49,10 +51,10 @@ export const CoachesPage: React.FC = () => {
           className="mb-16 text-center"
         >
           <span className="text-[10px] tracking-[0.3em] uppercase text-sky-600 font-bold block mb-3">
-            Step Sport Center
+            {t("coaches.eyebrow")}
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-blue-950">
-            Meet Our <span className="text-sky-600">Coaches</span>
+            {t("coaches.headingPart1")} <span className="text-sky-600">{t("coaches.headingPart2")}</span>
           </h1>
         </motion.div>
 
@@ -79,28 +81,28 @@ export const CoachesPage: React.FC = () => {
 
           <div className="lg:col-span-8 space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed font-light font-ui">
             <p>
-              Rita Zeqiri was an active swimmer of the Step Swimming Club for 12 years, a former champion and record holder in many disciplines. She was part of Kosovo's first and historic representation in the European Championship, World Championship, and the Rio 2016 Olympic Games. After this debut, she continued her sports career in triathlon, winning the state championship and many regional tournaments for 3 consecutive years. In 2021, Rita was the first Albanian woman to finish the IRONMAN triathlon race (3.8km swim, 180km bike, 42km run).
+              {t("coaches.rita.p1")}
             </p>
             <p>
-              Rita has been a coach at the Step swimming club since 2017. She formed the Step Swimming Academy, which consists of competitors/swimmers from younger age groups. The Academy swimmers are professional swimmers who represent the club in local and international arenas, winners of the state championship, record holders, and winners of many international medals for their age groups. The greatest successes of the Swimming Academy have been achieved with the two swimmers{" "}
-              <strong className="text-sky-700 font-semibold">P.Abazi</strong> (2013) and{" "}
-              <strong className="text-sky-700 font-semibold">B.Ademi</strong> (2015), who have ranked first in the European swimming ranking for their age groups. Rita holds a law degree from UP and a master's in Sport Management from Rome Business School.
+              {t("coaches.rita.p2a")}{" "}
+              <strong className="text-sky-700 font-semibold">P.Abazi</strong> (2013) {t("coaches.and")}{" "}
+              <strong className="text-sky-700 font-semibold">B.Ademi</strong> (2015), {t("coaches.rita.p2b")}
             </p>
             <p>
-              She's also a licensed coach from the World Aquatics Federation and ASCA (American Swimming Coaches Association).
+              {t("coaches.rita.p3")}
             </p>
             <ul className="space-y-2 pt-2 text-slate-700 font-medium">
               <li className="flex items-center gap-2">
-                <span className="text-sky-600">&#10148;</span> LEVEL 1 – Principles for Success
+                <span className="text-sky-600">&#10148;</span> {t("coaches.rita.level1")}
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-sky-600">&#10148;</span> LEVEL 2 – The Strokes School
+                <span className="text-sky-600">&#10148;</span> {t("coaches.rita.level2")}
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-sky-600">&#10148;</span> LEVEL 3 – Physiology School
+                <span className="text-sky-600">&#10148;</span> {t("coaches.rita.level3")}
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-sky-600">&#10148;</span> FITNESS: Strength &amp; Conditioning for Swimmers
+                <span className="text-sky-600">&#10148;</span> {t("coaches.rita.fitness")}
               </li>
             </ul>
           </div>
@@ -130,10 +132,10 @@ export const CoachesPage: React.FC = () => {
 
           <div className="lg:col-span-8 lg:order-1 space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed font-light font-ui">
             <p>
-              Besart Shala is a distinguished swimming coach in Kosovo, with the title 'Best Swimmer' for six consecutive years (2003-2008) and 'Best Coach' for seven consecutive years (2017-2023). As the coach of the Kosovo national team, he has led national teams in prestigious international competitions, including the Tokyo 2020 Olympic Games and the World Championships in Fukuoka and Doha.
+              {t("coaches.besart.p1")}
             </p>
             <p>
-              Besart holds a Master's degree in Economic Sciences and high-level training qualifications from FINA. He is known for his skills in communication and time management, and his passion for swimming and other sports.
+              {t("coaches.besart.p2")}
             </p>
           </div>
         </motion.section>
@@ -142,7 +144,7 @@ export const CoachesPage: React.FC = () => {
         <section className="my-4 py-12 relative overflow-hidden rounded-3xl bg-gradient-to-b from-sky-950/80 via-blue-950 to-slate-950 border border-sky-400/20 shadow-2xl backdrop-blur-xl">
           <div className="text-center px-4 mb-8">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tight">
-              The Rest of Our <span className="text-sky-400">Team</span>
+              {t("coaches.restHeadingPart1")} <span className="text-sky-400">{t("coaches.restHeadingPart2")}</span>
             </h3>
           </div>
 

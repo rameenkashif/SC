@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ScrollFrameSequence } from "./ScrollFrameSequence";
 import { Phone, Instagram, MapPin, Globe, Droplet } from "lucide-react";
 import { Logo } from "./Logo";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const HERO_FRAME_COUNT = 60;
 const heroFramePath = (index: number) => `/hero-frames/frame-${String(index + 1).padStart(3, "0")}.jpg`;
@@ -12,6 +13,7 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
+  const { t } = useLanguage();
   // Bubbles state for rendering cute floating pool bubbles
   const [bubbles, setBubbles] = useState<Array<{ id: number; x: number; y: number; size: number; delay: number; duration: number }>>([]);
 
@@ -127,7 +129,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
               transition={{ delay: 0.7, duration: 0.8 }}
               className="text-[10px] sm:text-xs md:text-xs uppercase tracking-[0.45em] text-sky-300 font-black mb-3 text-center"
             >
-              DIVE INTO EXCELLENCE
+              {t("hero.eyebrow")}
             </motion.span>
 
             {/* Title on one line: STEP SPORT CENTER */}
@@ -148,7 +150,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollProgress }) => {
               transition={{ delay: 1.3, duration: 0.8 }}
               className="font-ui text-[11px] sm:text-xs md:text-xs text-gray-200 font-light leading-relaxed max-w-md"
             >
-              Experience premier aquatic coaching, Olympic-sized swimming facilities, and personalized training programs designed to unleash your athletic potential.
+              {t("hero.subtitle")}
             </motion.p>
           </div>
         </motion.div>
