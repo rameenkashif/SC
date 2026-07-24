@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { CheckCircle, Plus } from "lucide-react";
+import { CheckCircle, Plus, Trash2 } from "lucide-react";
 import olympicPoolImg from "../assets/images/olympic_pool_5lanes_1784711486001.jpg";
 import brightSwimmerBgImg from "../assets/images/bright_swimmer_bg_1784780224088.jpg";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -114,6 +114,7 @@ export const RegisterPage: React.FC = () => {
     setMembers((prev) => prev.map((m, i) => (i === idx ? { ...m, ...patch } : m)));
   };
   const addMember = () => setMembers((prev) => [...prev, emptyMember()]);
+  const removeMember = (idx: number) => setMembers((prev) => (prev.length > 1 ? prev.filter((_, i) => i !== idx) : prev));
 
   const [groupForm, setGroupForm] = useState({
     institution: "",
@@ -479,9 +480,20 @@ export const RegisterPage: React.FC = () => {
                               className={idx > 0 ? "pt-4 mt-4 border-t border-slate-200 space-y-4" : "space-y-4"}
                             >
                               {idx > 0 && (
-                                <p className="text-[10px] font-semibold uppercase text-sky-700 tracking-wider">
-                                  {t("register.member")} {idx + 1}
-                                </p>
+                                <div className="flex items-center justify-between">
+                                  <p className="text-[10px] font-semibold uppercase text-sky-700 tracking-wider">
+                                    {t("register.member")} {idx + 1}
+                                  </p>
+                                  <button
+                                    type="button"
+                                    onClick={() => removeMember(idx)}
+                                    aria-label={t("register.removeMember")}
+                                    title={t("register.removeMember")}
+                                    className="text-slate-400 hover:text-red-500 transition-colors p-1 -m-1"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
                               )}
 
                               <div>
