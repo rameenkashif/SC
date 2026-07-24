@@ -101,10 +101,13 @@ export const RegisterPage: React.FC = () => {
   const { t } = useLanguage();
   const [category, setCategory] = useState<Category>("individual");
   const [agree, setAgree] = useState(false);
+  const isGroup = category === "group";
+  const [step, setStep] = useState<1 | 2>(1);
 
   const [members, setMembers] = useState<MemberInfo[]>([emptyMember()]);
   useEffect(() => {
     setMembers([emptyMember()]);
+    setStep(1);
   }, [category]);
 
   const updateMember = (idx: number, patch: Partial<MemberInfo>) => {
@@ -169,8 +172,21 @@ export const RegisterPage: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
+  const handleNext = () => {
+    const first = members[0];
+    if (!first.firstName || !first.lastName || !first.phone || !first.email) {
+      alert(t("register.alertRequired"));
+      return;
+    }
+    setStep(2);
+  };
+
   const handleRegisterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isGroup && step === 1) {
+      handleNext();
+      return;
+    }
     if (!agree) {
       alert(t("register.alertTerms"));
       return;
@@ -265,9 +281,48 @@ export const RegisterPage: React.FC = () => {
                     </select>
                   </div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {!isGroup && (
+                    <div className="flex items-center justify-center gap-4">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-black transition-colors ${
+                            step >= 1 ? "bg-sky-500 text-white" : "bg-slate-200 text-slate-500"
+                          }`}
+                        >
+                          1
+                        </span>
+                        <span
+                          className={`text-[11px] font-semibold uppercase tracking-wider ${
+                            step === 1 ? "text-slate-900" : "text-slate-400"
+                          }`}
+                        >
+                          {t("register.step1Title")}
+                        </span>
+                      </div>
+                      <div className="h-px w-10 bg-slate-300" />
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-black transition-colors ${
+                            step >= 2 ? "bg-sky-500 text-white" : "bg-slate-200 text-slate-500"
+                          }`}
+                        >
+                          2
+                        </span>
+                        <span
+                          className={`text-[11px] font-semibold uppercase tracking-wider ${
+                            step === 2 ? "text-slate-900" : "text-slate-400"
+                          }`}
+                        >
+                          {t("register.step2Title")}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={isGroup ? "grid grid-cols-1 lg:grid-cols-2 gap-8" : "space-y-8"}>
                     {/* LEFT: Your Information */}
-                    <div className="space-y-4">
+                    {(isGroup || step === 1) && (
+                    <div className={isGroup ? "space-y-4" : "space-y-4 max-w-xl mx-auto w-full"}>
                       <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
                         {t("register.yourInformation")}
                       </h3>
@@ -610,9 +665,11 @@ export const RegisterPage: React.FC = () => {
                         </>
                       )}
                     </div>
+                    )}
 
                     {/* RIGHT: Plan / Pricing */}
-                    <div className="space-y-4">
+                    {(isGroup || step === 2) && (
+                    <div className={isGroup ? "space-y-4" : "space-y-4 max-w-xl mx-auto w-full"}>
                       {category === "group" && (
                         <div className="rounded-3xl p-8 bg-gradient-to-br from-sky-500 to-blue-600 text-white text-center shadow-xl">
                           <p className="text-sm font-medium uppercase tracking-widest opacity-90 mb-2">
@@ -943,24 +1000,49 @@ export const RegisterPage: React.FC = () => {
                         </>
                       )}
                     </div>
+                    )}
                   </div>
 
+                  {/* Step 1 -> Step 2 */}
+                  {!isGroup && step === 1 && (
+                    <div className="flex justify-end pt-4 border-t border-slate-200">
+                      <button
+                        type="submit"
+                        className="font-ui h-12 px-8 rounded-full text-xs font-black tracking-wider uppercase bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/30 transition-all duration-300 active:scale-95"
+                      >
+                        {t("register.next")}
+                      </button>
+                    </div>
+                  )}
+
                   {/* Agree Checkbox + Submit */}
+                  {(isGroup || step === 2) && (
                   <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-200">
-                    <div className="flex items-center gap-3">
-                      <input
-                        id="agree-checkbox"
-                        type="checkbox"
-                        checked={agree}
-                        onChange={(e) => setAgree(e.target.checked)}
-                        className="w-4 h-4 rounded border-slate-300 bg-white text-sky-500 focus:ring-sky-500"
-                      />
-                      <label htmlFor="agree-checkbox" className="text-[11px] text-slate-600 font-normal select-none">
-                        {t("register.agreeToThe")}{" "}
-                        <a href="#about-us" className="text-sky-600 hover:underline font-medium">
-                          {t("register.termsAndConditions")}
-                        </a>
-                      </label>
+                    <div className="flex flex-wrap items-center gap-4">
+                      {!isGroup && (
+                        <button
+                          type="button"
+                          onClick={() => setStep(1)}
+                          className="h-11 px-5 rounded-full border border-slate-300 text-slate-600 hover:bg-slate-100 text-xs font-bold uppercase tracking-wider transition-colors"
+                        >
+                          {t("register.back")}
+                        </button>
+                      )}
+                      <div className="flex items-center gap-3">
+                        <input
+                          id="agree-checkbox"
+                          type="checkbox"
+                          checked={agree}
+                          onChange={(e) => setAgree(e.target.checked)}
+                          className="w-4 h-4 rounded border-slate-300 bg-white text-sky-500 focus:ring-sky-500"
+                        />
+                        <label htmlFor="agree-checkbox" className="text-[11px] text-slate-600 font-normal select-none">
+                          {t("register.agreeToThe")}{" "}
+                          <a href="#about-us" className="text-sky-600 hover:underline font-medium">
+                            {t("register.termsAndConditions")}
+                          </a>
+                        </label>
+                      </div>
                     </div>
 
                     <button
@@ -977,6 +1059,7 @@ export const RegisterPage: React.FC = () => {
                       )}
                     </button>
                   </div>
+                  )}
                 </motion.form>
               </motion.div>
             ) : (
