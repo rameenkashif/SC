@@ -103,12 +103,25 @@ export const RegisterPage: React.FC = () => {
   const [agree, setAgree] = useState(false);
   const isGroup = category === "group";
   const [step, setStep] = useState<1 | 2>(1);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   const [members, setMembers] = useState<MemberInfo[]>([emptyMember()]);
   useEffect(() => {
     setMembers([emptyMember()]);
     setStep(1);
+    setSelectedPlan(null);
   }, [category]);
+
+  const planCardCls = (key: string) =>
+    `${planCardClass} transition-shadow duration-200 ${
+      selectedPlan === key ? "ring-2 ring-sky-500" : ""
+    }`;
+  const planButtonCls = (key: string) =>
+    `w-full h-11 rounded-full border text-xs font-black uppercase tracking-wider transition-colors shadow-sm ${
+      selectedPlan === key
+        ? "bg-sky-500 border-sky-500 text-white"
+        : "border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white"
+    }`;
 
   const updateMember = (idx: number, patch: Partial<MemberInfo>) => {
     setMembers((prev) => prev.map((m, i) => (i === idx ? { ...m, ...patch } : m)));
@@ -696,7 +709,7 @@ export const RegisterPage: React.FC = () => {
                           <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
                             {t("register.stepAdults")}
                           </h3>
-                          <div className={planCardClass}>
+                          <div className={planCardCls("adults")}>
                             <div>
                               <label className={labelClass}>{t("register.plan")}</label>
                               <select
@@ -757,9 +770,10 @@ export const RegisterPage: React.FC = () => {
                             </div>
                             <button
                               type="button"
-                              className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
+                              onClick={() => setSelectedPlan("adults")}
+                              className={planButtonCls("adults")}
                             >
-                              {t("register.choosePlan")}
+                              {selectedPlan === "adults" ? t("register.planSelected") : t("register.choosePlan")}
                             </button>
                           </div>
                         </>
@@ -770,7 +784,7 @@ export const RegisterPage: React.FC = () => {
                           <h3 className="text-sm font-black uppercase text-slate-900 tracking-wide">
                             {t("register.kidsFitness")}
                           </h3>
-                          <div className={planCardClass}>
+                          <div className={planCardCls("kids-fitness")}>
                             <div>
                               <label className={labelClass}>{t("register.plan")}</label>
                               <select
@@ -829,9 +843,10 @@ export const RegisterPage: React.FC = () => {
                             </div>
                             <button
                               type="button"
-                              className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
+                              onClick={() => setSelectedPlan("kids-fitness")}
+                              className={planButtonCls("kids-fitness")}
                             >
-                              {t("register.choosePlan")}
+                              {selectedPlan === "kids-fitness" ? t("register.planSelected") : t("register.choosePlan")}
                             </button>
                           </div>
                         </>
@@ -845,7 +860,7 @@ export const RegisterPage: React.FC = () => {
                           {swimCards.map((card, idx) => {
                             const price = swimEntriesPriceMap[card.entries] * (1 - card.discount);
                             return (
-                              <div key={idx} className={planCardClass}>
+                              <div key={idx} className={planCardCls(`swim-${idx}`)}>
                                 <p className="text-[10px] font-bold text-sky-700 uppercase tracking-wide">
                                   {t(card.label)}
                                 </p>
@@ -904,9 +919,10 @@ export const RegisterPage: React.FC = () => {
                                 </div>
                                 <button
                                   type="button"
-                                  className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
+                                  onClick={() => setSelectedPlan(`swim-${idx}`)}
+                                  className={planButtonCls(`swim-${idx}`)}
                                 >
-                                  {t("register.choosePlan")}
+                                  {selectedPlan === `swim-${idx}` ? t("register.planSelected") : t("register.choosePlan")}
                                 </button>
                               </div>
                             );
@@ -921,7 +937,7 @@ export const RegisterPage: React.FC = () => {
                           </h3>
 
                           {/* Card 1: build your own plan */}
-                          <div className={planCardClass}>
+                          <div className={planCardCls("individual-0")}>
                             <div>
                               <label className={labelClass}>{t("register.duration")}</label>
                               <select
@@ -963,9 +979,10 @@ export const RegisterPage: React.FC = () => {
                                 </div>
                                 <button
                                   type="button"
-                                  className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
+                                  onClick={() => setSelectedPlan("individual-0")}
+                                  className={planButtonCls("individual-0")}
                                 >
-                                  {t("register.choosePlan")}
+                                  {selectedPlan === "individual-0" ? t("register.planSelected") : t("register.choosePlan")}
                                 </button>
                               </>
                             ) : (
@@ -976,7 +993,7 @@ export const RegisterPage: React.FC = () => {
                           </div>
 
                           {/* Card 2: fixed unlimited plan */}
-                          <div className={planCardClass}>
+                          <div className={planCardCls("individual-1")}>
                             <div>
                               <label className={labelClass}>{t("register.duration")}</label>
                               <select
@@ -1004,9 +1021,10 @@ export const RegisterPage: React.FC = () => {
                             </div>
                             <button
                               type="button"
-                              className="w-full h-11 rounded-full border border-sky-500/30 bg-sky-50 hover:bg-sky-500 text-sky-700 hover:text-white text-xs font-black uppercase tracking-wider transition-colors shadow-sm"
+                              onClick={() => setSelectedPlan("individual-1")}
+                              className={planButtonCls("individual-1")}
                             >
-                              {t("register.choosePlan")}
+                              {selectedPlan === "individual-1" ? t("register.planSelected") : t("register.choosePlan")}
                             </button>
                           </div>
                         </>
